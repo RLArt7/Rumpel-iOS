@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import Firebase
+import FBSDKCoreKit
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,8 +18,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        FirebaseApp.configure()
+       
+        FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+        FBSDKProfile.enableUpdates(onAccessTokenChange: true)
+        
+        if LoginManager.manager.currnetUser() != nil
+        {
+            UserManager.manager.fetchUserFromDefaults()
+            FirebaseManager.manager.fetchUserChatHistoryMap(completion: { (Bool) in
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let navController = storyboard.instantiateViewController(withIdentifier :"navigationController") as! UINavigationController
+                navController.modalPresentationStyle = .overFullScreen
+                self.window?.rootViewController = navController
+                self.window?.makeKeyAndVisible()
+            })
+        }
         // Override point for customization after application launch.
         return true
+    }
+    
+    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+        
+        let handled = FBSDKApplicationDelegate.sharedInstance().application(application,
+                                                                            open: url,
+                                                                            sourceApplication: sourceApplication!,
+                                                                            annotation: annotation)
+        
+        return handled
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
