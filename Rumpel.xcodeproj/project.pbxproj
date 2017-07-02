@@ -13,6 +13,7 @@
 		931F481A1F04CF33001A1CDD /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931F48191F04CF33001A1CDD /* UserManager.swift */; };
 		931F481C1F04D7D5001A1CDD /* ContactsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931F481B1F04D7D5001A1CDD /* ContactsViewModel.swift */; };
 		931F481E1F04E0EA001A1CDD /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931F481D1F04E0EA001A1CDD /* FirebaseManager.swift */; };
+		931F48211F0523C7001A1CDD /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931F48201F0523C7001A1CDD /* ChatViewController.swift */; };
 		93CA4A651EFF9DEE00EFAB45 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93CA4A641EFF9DEE00EFAB45 /* AppDelegate.swift */; };
 		93CA4A671EFF9DEE00EFAB45 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93CA4A661EFF9DEE00EFAB45 /* LoginViewController.swift */; };
 		93CA4A6A1EFF9DEE00EFAB45 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 93CA4A681EFF9DEE00EFAB45 /* Main.storyboard */; };
@@ -37,6 +38,7 @@
 		931F48191F04CF33001A1CDD /* UserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		931F481B1F04D7D5001A1CDD /* ContactsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsViewModel.swift; sourceTree = "<group>"; };
 		931F481D1F04E0EA001A1CDD /* FirebaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
+		931F48201F0523C7001A1CDD /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		93CA4A611EFF9DEE00EFAB45 /* Rumpel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Rumpel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		93CA4A641EFF9DEE00EFAB45 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		93CA4A661EFF9DEE00EFAB45 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -80,6 +82,14 @@
 				931F481B1F04D7D5001A1CDD /* ContactsViewModel.swift */,
 			);
 			name = Contacts;
+			sourceTree = "<group>";
+		};
+		931F481F1F0523A7001A1CDD /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				931F48201F0523C7001A1CDD /* ChatViewController.swift */,
+			);
+			name = Chat;
 			sourceTree = "<group>";
 		};
 		93CA4A581EFF9DEE00EFAB45 = {
@@ -130,6 +140,7 @@
 		93CA4A791EFFA26600EFAB45 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				931F481F1F0523A7001A1CDD /* Chat */,
 				931F48121F04B83D001A1CDD /* Contacts */,
 				93CA4A7C1EFFA66000EFAB45 /* Login */,
 			);
@@ -299,6 +310,7 @@
 				93CA4A7B1EFFA2F800EFAB45 /* LoginManager.swift in Sources */,
 				931F48181F04C7BF001A1CDD /* ContactsManager.swift in Sources */,
 				931F48141F04B85F001A1CDD /* ContactsViewController.swift in Sources */,
+				931F48211F0523C7001A1CDD /* ChatViewController.swift in Sources */,
 				93CA4A7F1EFFABCB00EFAB45 /* Answer.swift in Sources */,
 				931F481A1F04CF33001A1CDD /* UserManager.swift in Sources */,
 				93CA4A851EFFB61E00EFAB45 /* Contact.swift in Sources */,

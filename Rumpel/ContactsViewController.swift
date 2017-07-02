@@ -19,7 +19,7 @@ class ContactsViewController: UIViewController
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
-        self.title = "Welcome \(UserManager.manager.name!)"
+        self.title = "Contacts"
         if (viewModel.numberOfContacts() == 0)
         {
             activityIndicator.startAnimating()
@@ -31,6 +31,10 @@ class ContactsViewController: UIViewController
                 self.activityIndicator.stopAnimating()
             })
         }
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tableView.reloadData()
     }
 }
 
@@ -53,6 +57,13 @@ extension ContactsViewController : UITableViewDelegate,UITableViewDataSource
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
-        
+        FirebaseManager.manager.fetchUserConversation(withchatId: UserManager.manager.chatsIdMap[(viewModel.getContactForIndex(index: indexPath.row)?.id)!]!, endPoint: (viewModel.getContactForIndex(index: indexPath.row)?.id)!) { (Bool,chat) in
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let chatVC = storyboard.instantiateViewController(withIdentifier :"ChatViewController") as! ChatViewController
+            chatVC.chat = chat
+            chatVC.endPointUserDisplayName = self.viewModel.getContactForIndex(index: indexPath.row)?.name
+//            chatView.messages = [JSQMessage]()
+            self.navigationController?.pushViewController(chatVC, animated: true)
+        }
     }
 }

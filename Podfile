@@ -14,5 +14,5 @@ pod 'Firebase/Messaging'
 
 pod 'FBSDKLoginKit'
 pod 'FBSDKCoreKit'
-
+pod 'JSQMessagesViewController'
 end

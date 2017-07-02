@@ -38,10 +38,12 @@ class ContactsViewModel
                     {
                         ContactsManager.manager.fetchContacts(withDict: data)
                     }
-           //         UserManager.manager.name = user?.displayName ?? ""
-             //       UserManager.manager.userId = user?.uid ?? ""
-               //     UserManager.manager.facebookId = FBSDKAccessToken.current().userID ?? ""
-                 //   UserManager.manager.userToken = user?.refreshToken ?? ""
+                    FirebaseManager.manager.createUser(completion: { (data, error) in
+                        if error != nil
+                        {
+                            print("error saving the user")
+                        }
+                    })
                     completionBlock(true)
                 }
             })

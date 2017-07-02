@@ -47,6 +47,12 @@ class LoginManager: NSObject {
                                     ContactsManager.manager.fetchContacts(withDict: data)
                                 }
                                 UserManager.manager.setUser(withName: user?.displayName ?? "", userToken: user?.refreshToken ?? "", facebookId: FBSDKAccessToken.current().userID ?? "", userId: user?.uid ?? "")
+                                FirebaseManager.manager.createUser(completion: { (data, error) in
+                                    if error != nil
+                                    {
+                                        print("error saving the user")
+                                    }
+                                })
                                 completionBlock(true, false)
                             }
                         })

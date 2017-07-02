@@ -141,6 +141,24 @@
             </objects>
             <point key="canvasLocation" x="1860" y="35.532233883058474"/>
         </scene>
+        <!--Chat View Controller-->
+        <scene sceneID="Es7-ff-rOv">
+            <objects>
+                <viewController storyboardIdentifier="ChatViewController" id="0S7-hJ-dYK" customClass="ChatViewController" customModule="Rumpel" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="XgY-7m-pzp"/>
+                        <viewControllerLayoutGuide type="bottom" id="us3-wh-HNN"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="76D-qB-zQr">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="seB-Ia-lsI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2671" y="36"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="h6P-Nn-oiY">
             <objects>

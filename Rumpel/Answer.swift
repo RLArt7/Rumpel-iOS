@@ -13,12 +13,8 @@ class Answer
     var answerText : String = ""
     var isRight = false;
     
-    init(dict : [String: Any]) {
-        self.updateValues(dict: dict)
-    }
-    
-    func updateValues(dict: [String: Any]){
-        self.answerText = dict["answerText"] as? String ?? ""
-        self.isRight = dict["isRight"] as? Bool ?? false
+    init(answer : [String: Any]) {
+        self.answerText = answer["answerText"] as? String ?? ""
+        self.isRight = answer["isRight"] as? Bool ?? false
     }
 }

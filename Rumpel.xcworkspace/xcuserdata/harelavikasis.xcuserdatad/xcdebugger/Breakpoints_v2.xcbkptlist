@@ -6,16 +6,50 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Rumpel/FirebaseManager.swift"
+            timestampString = "520430404.961161"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "87"
+            endingLineNumber = "87"
+            landmarkName = "createUser(completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.ExceptionBreakpoint">
+         <BreakpointContent
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Rumpel/LoginManager.swift"
-            timestampString = "520408525.789825"
+            scope = "1"
+            stopOnStyle = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.SwiftErrorBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Pods/JSQMessagesViewController/JSQMessagesViewController/Controllers/JSQMessagesViewController.m"
+            timestampString = "520685067.089593"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "47"
-            endingLineNumber = "47"
-            landmarkName = "loginWithFacebook(viewController:needShowLoaderBlock:completionBlock:)"
+            startingLineNumber = "541"
+            endingLineNumber = "541"
+            landmarkName = "-collectionView:cellForItemAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -25,46 +59,14 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Rumpel/LoginManager.swift"
-            timestampString = "520408615.618814"
+            filePath = "Rumpel/ChatViewController.swift"
+            timestampString = "520686240.21792"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "45"
-            endingLineNumber = "45"
-            landmarkName = "loginWithFacebook(viewController:needShowLoaderBlock:completionBlock:)"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
+            landmarkName = "viewDidLoad()"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Rumpel.LoginManager.(loginWithFacebook (viewController : __ObjC.UIViewController, needShowLoaderBlock : () -&gt; (), completionBlock : (Swift.Bool, Swift.Bool) -&gt; ()) -&gt; ()).(closure #1).(closure #1).(closure #1)"
-                  moduleName = "Rumpel"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/harelavikasis/Desktop/iOS/Rumpel/Rumpel/Rumpel/LoginManager.swift"
-                  timestampString = "520419253.467448"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "45"
-                  endingLineNumber = "45"
-                  offsetFromSymbolStart = "220">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Rumpel.LoginManager.(loginWithFacebook (viewController : __ObjC.UIViewController, needShowLoaderBlock : () -&gt; (), completionBlock : (Swift.Bool, Swift.Bool) -&gt; ()) -&gt; ()).(closure #1).(closure #1).(closure #1)"
-                  moduleName = "Rumpel"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/harelavikasis/Desktop/iOS/Rumpel/Rumpel/Rumpel/LoginManager.swift"
-                  timestampString = "520419253.469116"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "45"
-                  endingLineNumber = "45"
-                  offsetFromSymbolStart = "760">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -73,88 +75,43 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Rumpel/LoginManager.swift"
-            timestampString = "520414347.000127"
+            filePath = "Rumpel/Question.swift"
+            timestampString = "520685380.448821"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "49"
-            endingLineNumber = "49"
-            landmarkName = "loginWithFacebook(viewController:needShowLoaderBlock:completionBlock:)"
+            startingLineNumber = "25"
+            endingLineNumber = "25"
+            landmarkName = "init(question:)"
             landmarkType = "7">
             <Locations>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "Rumpel.LoginManager.(loginWithFacebook (viewController : __ObjC.UIViewController, needShowLoaderBlock : () -&gt; (), completionBlock : (Swift.Bool, Swift.Bool) -&gt; ()) -&gt; ()).(closure #1).(closure #1).(closure #1)"
+                  symbolName = "Rumpel.Question.init (question : Swift.Dictionary&lt;Swift.String, Any&gt;) -&gt; Rumpel.Question"
                   moduleName = "Rumpel"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/harelavikasis/Desktop/iOS/Rumpel/Rumpel/Rumpel/LoginManager.swift"
-                  timestampString = "520419253.472409"
+                  urlString = "file:///Users/harelavikasis/Desktop/iOS/Rumpel/Rumpel/Rumpel/Question.swift"
+                  timestampString = "520685519.381379"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "49"
-                  endingLineNumber = "49"
-                  offsetFromSymbolStart = "932">
+                  startingLineNumber = "25"
+                  endingLineNumber = "25"
+                  offsetFromSymbolStart = "260">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "Rumpel.LoginManager.(loginWithFacebook (viewController : __ObjC.UIViewController, needShowLoaderBlock : () -&gt; (), completionBlock : (Swift.Bool, Swift.Bool) -&gt; ()) -&gt; ()).(closure #1).(closure #1).(closure #1).(implicit closure #1)"
+                  symbolName = "Rumpel.Question.(init (question : Swift.Dictionary&lt;Swift.String, Any&gt;) -&gt; Rumpel.Question).(implicit closure #1)"
                   moduleName = "Rumpel"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/harelavikasis/Desktop/iOS/Rumpel/Rumpel/Rumpel/LoginManager.swift"
-                  timestampString = "520419253.473763"
+                  urlString = "file:///Users/harelavikasis/Desktop/iOS/Rumpel/Rumpel/Rumpel/Question.swift"
+                  timestampString = "520685519.382772"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "49"
-                  endingLineNumber = "49"
-                  offsetFromSymbolStart = "16">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Rumpel.LoginManager.(loginWithFacebook (viewController : __ObjC.UIViewController, needShowLoaderBlock : () -&gt; (), completionBlock : (Swift.Bool, Swift.Bool) -&gt; ()) -&gt; ()).(closure #1).(closure #1).(closure #1).(implicit closure #2)"
-                  moduleName = "Rumpel"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/harelavikasis/Desktop/iOS/Rumpel/Rumpel/Rumpel/LoginManager.swift"
-                  timestampString = "520419253.475112"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "49"
-                  endingLineNumber = "49"
-                  offsetFromSymbolStart = "16">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Rumpel.LoginManager.(loginWithFacebook (viewController : __ObjC.UIViewController, needShowLoaderBlock : () -&gt; (), completionBlock : (Swift.Bool, Swift.Bool) -&gt; ()) -&gt; ()).(closure #1).(closure #1).(closure #1).(implicit closure #3)"
-                  moduleName = "Rumpel"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/harelavikasis/Desktop/iOS/Rumpel/Rumpel/Rumpel/LoginManager.swift"
-                  timestampString = "520419253.476472"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "49"
-                  endingLineNumber = "49"
-                  offsetFromSymbolStart = "16">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Rumpel.LoginManager.(loginWithFacebook (viewController : __ObjC.UIViewController, needShowLoaderBlock : () -&gt; (), completionBlock : (Swift.Bool, Swift.Bool) -&gt; ()) -&gt; ()).(closure #1).(closure #1).(closure #1).(implicit closure #4)"
-                  moduleName = "Rumpel"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/harelavikasis/Desktop/iOS/Rumpel/Rumpel/Rumpel/LoginManager.swift"
-                  timestampString = "520419253.477864"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "49"
-                  endingLineNumber = "49"
+                  startingLineNumber = "25"
+                  endingLineNumber = "25"
                   offsetFromSymbolStart = "16">
                </Location>
             </Locations>

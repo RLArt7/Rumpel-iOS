@@ -27,12 +27,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         {
             UserManager.manager.fetchUserFromDefaults()
             FirebaseManager.manager.fetchUserChatHistoryMap(completion: { (Bool) in
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let navController = storyboard.instantiateViewController(withIdentifier :"navigationController") as! UINavigationController
-                navController.modalPresentationStyle = .overFullScreen
-                self.window?.rootViewController = navController
-                self.window?.makeKeyAndVisible()
+               
             })
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let navController = storyboard.instantiateViewController(withIdentifier :"navigationController") as! UINavigationController
+            navController.modalPresentationStyle = .overFullScreen
+            self.window?.rootViewController = navController
+            self.window?.makeKeyAndVisible()
         }
         // Override point for customization after application launch.
         return true

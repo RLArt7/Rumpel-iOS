@@ -7,13 +7,14 @@
 //
 
 import Foundation
+import Firebase
 
 class Chat
 {
     var id = ""
     var endPoint = ""
     var questions = [Question]()
-    
+    var isThereOpenQuestion = false
     func isThereOpenQuestions()->Bool
     {
         var returnValue = false
@@ -36,5 +37,29 @@ class Chat
             }
         })
         return returnQuestion
+    }
+    
+    init(snapshot : DataSnapshot) {
+        self.id = snapshot.key as? String ?? ""
+        
+        if let dict = snapshot.value as? [String : Any] {
+            self.endPoint = dict["endPoint"] as? String ?? ""
+            
+            self.isThereOpenQuestion = dict["thereOpenQuestion"] as? Bool ?? false
+            
+            if let questions = dict["questions"] as? [[String:Any]]
+            {
+                questions.forEach({ (question) in
+                   self.questions.append(Question(question: question))
+                })
+            }
+            
+        }
+    }
+    init(withChatId id:String,endPoint:String)
+    {
+        self.id = id
+        self.endPoint = endPoint
+        self.isThereOpenQuestion = false
     }
 }
