@@ -15,4 +15,5 @@ pod 'Firebase/Messaging'
 pod 'FBSDKLoginKit'
 pod 'FBSDKCoreKit'
 pod 'JSQMessagesViewController'
+pod 'BEMCheckBox'
 end

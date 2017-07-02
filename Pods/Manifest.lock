@@ -1,4 +1,5 @@
 PODS:
+  - BEMCheckBox (1.4.1)
   - Bolts (1.8.4):
     - Bolts/AppLinks (= 1.8.4)
     - Bolts/Tasks (= 1.8.4)
@@ -60,6 +61,7 @@ PODS:
   - Protobuf (3.3.0)
 
 DEPENDENCIES:
+  - BEMCheckBox
   - FBSDKCoreKit
   - FBSDKLoginKit
   - Firebase/Auth
@@ -69,6 +71,7 @@ DEPENDENCIES:
   - JSQMessagesViewController
 
 SPEC CHECKSUMS:
+  BEMCheckBox: 5ba6e37ade3d3657b36caecc35c8b75c6c2b1a4e
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
   FBSDKCoreKit: 9c2daf0162214d6d2e21cf8208a9c6c2a2e42b9c
   FBSDKLoginKit: 00cf28916b9f0169763a3d61985d745b579fe304
@@ -85,6 +88,6 @@ SPEC CHECKSUMS:
   JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
   Protobuf: d582fecf68201eac3d79ed61369ef45734394b9c
 
-PODFILE CHECKSUM: e38fb2f11099e5d0a72a9032d40aec2e9300bfa9
+PODFILE CHECKSUM: 8702cb32c744d99bfaf8c6c0e0f3693ae8611205
 
 COCOAPODS: 1.2.1

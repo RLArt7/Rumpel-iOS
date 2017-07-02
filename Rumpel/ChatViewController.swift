@@ -23,7 +23,18 @@ class ChatViewController: JSQMessagesViewController {
     var answerThreeButton: UIButton = UIButton(frame: CGRect(x: 0, y: 67, width:  UIScreen.main.bounds.width / 2, height: 67))
     var answerFourButton: UIButton = UIButton(frame: CGRect(x: UIScreen.main.bounds.width / 2, y: 67, width:  UIScreen.main.bounds.width / 2, height: 67))
     
+    var addAnswerButton: UIButton = UIButton(frame: CGRect(x: UIScreen.main.bounds.width - 75, y: UIScreen.main.bounds.height - 75, width:  50, height: 50))
+
     var chat : Chat?
+    {
+        didSet {
+            if self.collectionView != nil
+            {
+                setOutlets()
+                self.collectionView.reloadData()
+            }
+        }
+    }
     var endPointUserDisplayName: String!
     var messages = [JSQMessage]()
     let defaults = UserDefaults.standard
@@ -31,15 +42,12 @@ class ChatViewController: JSQMessagesViewController {
     var outgoingBubble: JSQMessagesBubbleImage!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.title = "\(endPointUserDisplayName!)"
         self.inputToolbar.isHidden = true
         self.senderId = UserManager.manager.userId
         self.senderDisplayName = UserManager.manager.name
-        
-        chat?.questions.forEach({ (question) in
-            messages.append(JSQMessage(senderId: question.senderId, displayName: question.senderId == self.senderId ? self.senderDisplayName : endPointUserDisplayName, text: question.getMessageTextForQuestion()))
-        })
-        
+        setOutlets()
         incomingBubble = JSQMessagesBubbleImageFactory().incomingMessagesBubbleImage(with: UIColor.jsq_messageBubbleBlue())
         outgoingBubble = JSQMessagesBubbleImageFactory().outgoingMessagesBubbleImage(with: UIColor.lightGray)
         
@@ -59,85 +67,42 @@ class ChatViewController: JSQMessagesViewController {
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        setOutlets()
     }
     
     func setOutlets()
     {
+        messages.removeAll()
+        answersView.removeFromSuperview()
+        addAnswerButton.removeFromSuperview()
+        
+        chat?.questions.forEach({ (question) in
+            messages.append(JSQMessage(senderId: question.senderId, displayName: question.senderId == self.senderId ? self.senderDisplayName : endPointUserDisplayName, text: question.getMessageTextForQuestion()))
+        })
+        
         if (chat?.isThereOpenQuestion)!
         {
             let frame = CGRect(x:  self.collectionView.frame.origin.x, y: UIScreen.main.bounds.width, width: self.collectionView.frame.width, height: self.collectionView.frame.height - 134)
             self.collectionView.frame = frame
             self.view.addSubview(answersView)
             self.view.bringSubview(toFront: answersView)
-            
             if (chat?.isThereOpenQuestion)!
             {
-                self.setButtons(withQuestion: (chat?.fetchOpenQuestoin())!)
+                if chat?.fetchOpenQuestoin() != nil
+                {
+                    self.setButtons(withQuestion: (chat?.fetchOpenQuestoin())!)
+                }
             }
         }
         else
         {
             let frame = CGRect(x:  self.collectionView.frame.origin.x, y: UIScreen.main.bounds.width, width: self.collectionView.frame.width, height: UIScreen.main.bounds.height)
             self.collectionView.frame = frame
-            answersView.removeFromSuperview()
-            // TODO : need to add here the '+' button to add answers
+            setAddQuestionButton()
         }
     }
     
-    func setButtons(withQuestion question:Question)
-    {
-        answerOneButton.removeFromSuperview()
-        answerTwoButton.removeFromSuperview()
-        answerThreeButton.removeFromSuperview()
-        answerFourButton.removeFromSuperview()
-        
-        answerOneButton.titleLabel?.textColor = .white
-        answerTwoButton.titleLabel?.textColor = .white
-        answerThreeButton.titleLabel?.textColor = .white
-        answerFourButton.titleLabel?.textColor = .white
-        
-        answerOneButton.backgroundColor = UIColor.lightGray
-        answerTwoButton.backgroundColor = UIColor.lightGray
-        answerThreeButton.backgroundColor = UIColor.lightGray
-        answerFourButton.backgroundColor = UIColor.lightGray
-        
-        answerOneButton.addTarget(self, action: #selector(ChatViewController.answerSelected(sender:)), for: .touchUpInside)
-        answerTwoButton.addTarget(self, action: #selector(ChatViewController.answerSelected(sender:)), for: .touchUpInside)
-        answerThreeButton.addTarget(self, action: #selector(ChatViewController.answerSelected(sender:)), for: .touchUpInside)
-        answerFourButton.addTarget(self, action: #selector(ChatViewController.answerSelected(sender:)), for: .touchUpInside)
-        
-        answerOneButton.tag = 0
-        answerTwoButton.tag = 1
-        answerThreeButton.tag = 2
-        answerFourButton.tag = 3
-        
-        if question.isQuestionOpen
-        {
-            answerOneButton.setTitle("1: \(question.answers[0].answerText)", for: .normal)
-            answerTwoButton.setTitle("2: \(question.answers[1].answerText)", for: .normal)
-            answerThreeButton.setTitle("3: \(question.answers[2].answerText)", for: .normal)
-            answerFourButton.setTitle("4: \(question.answers[3].answerText)", for: .normal)
-            answersView.addSubview(answerOneButton)
-            answersView.addSubview(answerTwoButton)
-            answersView.addSubview(answerThreeButton)
-            answersView.addSubview(answerFourButton)
-            if question.senderId == senderId
-            {
-                answerOneButton.isEnabled = false
-                answerTwoButton.isEnabled = false
-                answerThreeButton.isEnabled = false
-                answerFourButton.isEnabled = false
-            }
-            else
-            {
-                answerOneButton.isEnabled = true
-                answerTwoButton.isEnabled = true
-                answerThreeButton.isEnabled = true
-                answerFourButton.isEnabled = true
-            }
-        }
-    }
+    
+    
     
     func answerSelected(sender: UIButton!)
     {
@@ -151,6 +116,15 @@ class ChatViewController: JSQMessagesViewController {
         setOutlets()
         self.collectionView?.reloadData()
         self.collectionView?.layoutIfNeeded()
+    }
+    
+    func addQuestion(sender: UIButton!)
+    {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        let addQuestionVC = storyboard.instantiateViewController(withIdentifier :"NewQuestionViewController") as! NewQuestionViewController
+        addQuestionVC.modalPresentationStyle = .overFullScreen
+        self.present(addQuestionVC, animated: true)
     }
     
     func updatChatInFirebase()
