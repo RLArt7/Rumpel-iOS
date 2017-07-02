@@ -17,4 +17,9 @@ class Answer
         self.answerText = answer["answerText"] as? String ?? ""
         self.isRight = answer["isRight"] as? Bool ?? false
     }
+    
+    func getObjectAsDictionary()->[String: Any]
+    {
+        return ["answerText": self.answerText,"isRight":self.isRight]
+    }
 }

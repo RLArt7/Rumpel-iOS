@@ -14,9 +14,10 @@ class ContactsViewController: UIViewController
     @IBOutlet var activityIndicator: UIActivityIndicatorView!
 
     var viewModel = ContactsViewModel()
-    
+       var isAlraedyShow = false
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         tableView.delegate = self
         tableView.dataSource = self
         self.title = "Contacts"
@@ -35,6 +36,7 @@ class ContactsViewController: UIViewController
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tableView.reloadData()
+        self.isAlraedyShow = false
     }
 }
 
@@ -57,13 +59,19 @@ extension ContactsViewController : UITableViewDelegate,UITableViewDataSource
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
+        let theStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let chatVC = theStoryboard.instantiateViewController(withIdentifier :"ChatViewController") as! ChatViewController
+
         FirebaseManager.manager.fetchUserConversation(withchatId: UserManager.manager.chatsIdMap[(viewModel.getContactForIndex(index: indexPath.row)?.id)!]!, endPoint: (viewModel.getContactForIndex(index: indexPath.row)?.id)!) { (Bool,chat) in
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let chatVC = storyboard.instantiateViewController(withIdentifier :"ChatViewController") as! ChatViewController
             chatVC.chat = chat
             chatVC.endPointUserDisplayName = self.viewModel.getContactForIndex(index: indexPath.row)?.name
-//            chatView.messages = [JSQMessage]()
-            self.navigationController?.pushViewController(chatVC, animated: true)
+            
+            if !self.isAlraedyShow
+            {
+                self.navigationController?.pushViewController(chatVC, animated: true)
+                self.isAlraedyShow = true
+            }
+
         }
     }
 }

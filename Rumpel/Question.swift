@@ -14,8 +14,8 @@ class Question
     var questionText = ""
     var senderId = ""
     var answers = [Answer]()
-    var initialTime : Int?
-    var timeToAnswer : Int?
+    var initialTime : Int = 0
+    var timeToAnswer : Int = 0
     
     var isRightAnswer = false
     var isQuestionOpen = true
@@ -38,17 +38,36 @@ class Question
         }
     }
     
+    func getObjectAsDictionary()->[String: Any]
+    {
+        var returnDict = ["id": self.id,
+                "questionText":self.questionText,
+                "senderId":self.senderId,
+                "timeToAnswer":self.timeToAnswer,
+                "initialTime":self.initialTime,
+                "questionOpen":self.isQuestionOpen,
+                "isRightAnswer" : self.isRightAnswer] as [String : Any]
+        
+        var answerDict =  [String: Any]()
+        for (index,answer) in answers.enumerated()
+        {
+            answerDict["\(index)"] = answer.getObjectAsDictionary()
+        }
+        returnDict["answers"] = answerDict
+        return returnDict
+    }
+    
     func closeQuestion()
     {
         let now = Date().timeIntervalSince1970
-        self.timeToAnswer = Int(now - TimeInterval(initialTime!))
+        self.timeToAnswer = Int(now - TimeInterval(initialTime))
         isQuestionOpen = false
     }
     
-    func checkAnswer(withAnswer ans: Answer)->Bool
+    func checkAnswer(withAnswerIndex index: Int)->Bool
     {
         closeQuestion()
-        if(ans.isRight)
+        if(answers[index].isRight)
         {
             isRightAnswer = true
             return true

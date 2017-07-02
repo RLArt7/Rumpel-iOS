@@ -58,11 +58,8 @@ class FirebaseManager
             let key = Database.database().reference().child("chats").childByAutoId().key
             self.ref = Database.database().reference().child("chats").child(key)
             let chat = Chat(withChatId: key, endPoint: endPoint)
-            var chatDict = [String: Any]()
-            chatDict["id"] = chat.id
-            chatDict["endPoint"] = chat.endPoint
-            chatDict["thereOpenQuestion"] = chat.isThereOpenQuestion
-            chatDict["questions"] = chat.questions
+            let chatDict = chat.getObjectAsDictionary()
+            
             self.ref.updateChildValues(chatDict, withCompletionBlock: { (error, reference) in
                 if error != nil {
                     print ("error \(String(describing: error))")
@@ -80,6 +77,13 @@ class FirebaseManager
             })
             completion(true,chat)
         }
+    }
+    
+    func updateChat(withChat chat:Chat)
+    {
+        self.ref = Database.database().reference().child("chats").child(chat.id)
+    
+        self.ref.updateChildValues(chat.getObjectAsDictionary())
     }
     
     func createUser(completion:@escaping (_ userSnapshot:DataSnapshot?,_ error: Error?)->Void)

@@ -39,6 +39,22 @@ class Chat
         return returnQuestion
     }
     
+    func getObjectAsDictionary()->[String: Any]
+    {
+        var chatDict = [String: Any]()
+        chatDict["id"] = self.id
+        chatDict["endPoint"] = self.endPoint
+        chatDict["thereOpenQuestion"] = self.isThereOpenQuestion
+        var questionsDict =  [String: Any]()
+        for (index,qusetion) in self.questions.enumerated()
+        {
+            questionsDict["\(index)"] = qusetion.getObjectAsDictionary()
+        }
+        chatDict["questions"] = questionsDict
+        
+        return chatDict
+    }
+    
     init(snapshot : DataSnapshot) {
         self.id = snapshot.key as? String ?? ""
         
