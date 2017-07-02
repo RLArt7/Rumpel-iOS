@@ -16,7 +16,7 @@ class Question
     var answers = [Answer]()
     var initialTime : Int = 0
     var timeToAnswer : Int = 0
-    
+    var answer : Answer?
     var isRightAnswer = false
     var isQuestionOpen = true
     
@@ -36,21 +36,30 @@ class Question
                 self.answers.append(Answer(answer: answer))
             })
         }
-    }
-    init()
-    {
         
+        if let answer = question["answer"] as? [String:Any]
+        {
+            self.answer = Answer(answer: answer)
+            
+            if self.answer?.answerText == ""
+            {
+                self.answer = getRightAnswer()
+            }
+        }
     }
+    init(){}
     
     func getObjectAsDictionary()->[String: Any]
     {
+        
         var returnDict = ["id": self.id,
                 "questionText":self.questionText,
                 "senderId":self.senderId,
                 "timeToAnswer":self.timeToAnswer,
                 "initialTime":self.initialTime,
                 "questionOpen":self.isQuestionOpen,
-                "isRightAnswer" : self.isRightAnswer] as [String : Any]
+                "isRightAnswer" : self.isRightAnswer,
+                "answer" : self.answer != nil ? self.answer?.getObjectAsDictionary() : Answer(answerText: "", isRight: false).getObjectAsDictionary() ] as [String : Any]
         
         var answerDict =  [String: Any]()
         for (index,answer) in answers.enumerated()
@@ -71,6 +80,7 @@ class Question
     func checkAnswer(withAnswerIndex index: Int)->Bool
     {
         closeQuestion()
+        self.answer = answers[index]
         if(answers[index].isRight)
         {
             isRightAnswer = true
@@ -97,7 +107,19 @@ class Question
         else
         {
             returnStr += self.isRightAnswer ? "✅" : "❌"
+            returnStr += "\n  --\(answer != nil ? answer!.answerText :  getRightAnswer()!.answerText)--"
             return returnStr
         }
+    }
+    func getRightAnswer()->Answer?
+    {
+        var retAnswer : Answer? = nil
+        answers.forEach { (answer) in
+            if answer.isRight
+            {
+                retAnswer = answer
+            }
+        }
+        return retAnswer
     }
 }
