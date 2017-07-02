@@ -37,6 +37,10 @@ class Question
             })
         }
     }
+    init()
+    {
+        
+    }
     
     func getObjectAsDictionary()->[String: Any]
     {

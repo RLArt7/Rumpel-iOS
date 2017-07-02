@@ -79,6 +79,22 @@ class FirebaseManager
         }
     }
     
+    func addNewQuestion(withQuestion question:Question,completion:@escaping (( _ questionId:String?)->Void))
+    {
+        let key = Database.database().reference().child("questions").childByAutoId().key
+        self.ref = Database.database().reference().child("questions").child(key)
+        
+        self.ref.updateChildValues(question.getObjectAsDictionary(), withCompletionBlock: { (error, reference) in
+            if error != nil {
+                print ("error \(String(describing: error))")
+            }
+            else
+            {
+               completion(key)
+            }
+        })
+    }
+    
     func updateChat(withChat chat:Chat)
     {
         self.ref = Database.database().reference().child("chats").child(chat.id)

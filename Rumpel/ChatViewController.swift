@@ -15,7 +15,7 @@ public enum Setting: String{
     case removeAvatar = "Remove Avatars"
 }
 
-class ChatViewController: JSQMessagesViewController {
+class ChatViewController: JSQMessagesViewController,AddNewQuestionProtocol {
 
     var answersView: UIView = UIView(frame: CGRect(x: 0, y: UIScreen.main.bounds.height - 134, width: UIScreen.main.bounds.width, height: 134))
     var answerOneButton: UIButton = UIButton(frame: CGRect(x: 0, y: 0, width:  UIScreen.main.bounds.width / 2, height: 67))
@@ -25,6 +25,10 @@ class ChatViewController: JSQMessagesViewController {
     
     var addAnswerButton: UIButton = UIButton(frame: CGRect(x: UIScreen.main.bounds.width - 75, y: UIScreen.main.bounds.height - 75, width:  50, height: 50))
 
+    let theStoryboard = UIStoryboard(name: "Main", bundle: nil)
+    
+    var addQuestionVC : NewQuestionViewController!
+    
     var chat : Chat?
     {
         didSet {
@@ -40,9 +44,13 @@ class ChatViewController: JSQMessagesViewController {
     let defaults = UserDefaults.standard
     var incomingBubble: JSQMessagesBubbleImage!
     var outgoingBubble: JSQMessagesBubbleImage!
+    
+//  MARK: Override Functions
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        addQuestionVC = self.theStoryboard.instantiateViewController(withIdentifier :"NewQuestionViewController") as! NewQuestionViewController
+        addQuestionVC.modalPresentationStyle = .overFullScreen
+        addQuestionVC.delegate = self
         self.title = "\(endPointUserDisplayName!)"
         self.inputToolbar.isHidden = true
         self.senderId = UserManager.manager.userId
@@ -65,10 +73,12 @@ class ChatViewController: JSQMessagesViewController {
         self.collectionView?.reloadData()
         self.collectionView?.layoutIfNeeded()
     }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
     }
     
+//  MARK: Public Functions
     func setOutlets()
     {
         messages.removeAll()
@@ -81,15 +91,18 @@ class ChatViewController: JSQMessagesViewController {
         
         if (chat?.isThereOpenQuestion)!
         {
-            let frame = CGRect(x:  self.collectionView.frame.origin.x, y: UIScreen.main.bounds.width, width: self.collectionView.frame.width, height: self.collectionView.frame.height - 134)
-            self.collectionView.frame = frame
-            self.view.addSubview(answersView)
-            self.view.bringSubview(toFront: answersView)
-            if (chat?.isThereOpenQuestion)!
+            if (chat?.fetchOpenQuestoin()?.senderId != UserManager.manager.userId)
             {
-                if chat?.fetchOpenQuestoin() != nil
+                let frame = CGRect(x:  self.collectionView.frame.origin.x, y: UIScreen.main.bounds.width, width: self.collectionView.frame.width, height: self.collectionView.frame.height - 134)
+                self.collectionView.frame = frame
+                self.view.addSubview(answersView)
+                self.view.bringSubview(toFront: answersView)
+                if (chat?.isThereOpenQuestion)!
                 {
-                    self.setButtons(withQuestion: (chat?.fetchOpenQuestoin())!)
+                    if chat?.fetchOpenQuestoin() != nil
+                    {
+                        self.setButtons(withQuestion: (chat?.fetchOpenQuestoin())!)
+                    }
                 }
             }
         }
@@ -100,9 +113,6 @@ class ChatViewController: JSQMessagesViewController {
             setAddQuestionButton()
         }
     }
-    
-    
-    
     
     func answerSelected(sender: UIButton!)
     {
@@ -120,10 +130,6 @@ class ChatViewController: JSQMessagesViewController {
     
     func addQuestion(sender: UIButton!)
     {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        
-        let addQuestionVC = storyboard.instantiateViewController(withIdentifier :"NewQuestionViewController") as! NewQuestionViewController
-        addQuestionVC.modalPresentationStyle = .overFullScreen
         self.present(addQuestionVC, animated: true)
     }
     
@@ -131,8 +137,16 @@ class ChatViewController: JSQMessagesViewController {
     {
         FirebaseManager.manager.updateChat(withChat: chat!)
     }
-    //MARK: JSQMessages CollectionView DataSource
     
+//  MARK: Add Question protocol Functions
+    func addQuestionToConversation(question: Question)
+    {
+        self.chat?.questions.append(question)
+        self.chat?.isThereOpenQuestion = true
+        FirebaseManager.manager.updateChat(withChat: chat!)
+    }
+    
+//MARK: JSQMessages CollectionView DataSource
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return messages.count
     }
@@ -234,7 +248,8 @@ class ChatViewController: JSQMessagesViewController {
         return kJSQMessagesCollectionViewCellLabelHeightDefault;
     }
     
-    func getUserInitials(withUserName name:String)->String
+//  MARK: Private Functions
+    private func getUserInitials(withUserName name:String)->String
     {
         var nameArray = name.components(separatedBy: " ")
         if nameArray.count >= 2

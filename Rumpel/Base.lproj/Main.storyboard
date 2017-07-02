@@ -213,7 +213,7 @@
                                                             <constraint firstAttribute="width" constant="25" id="idX-AD-xt0"/>
                                                         </constraints>
                                                     </view>
-                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Answer 1" textAlignment="justified" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Uek-Nj-rBY">
+                                                    <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Answer 1" textAlignment="justified" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Uek-Nj-rBY">
                                                         <rect key="frame" x="58" y="117" width="291" height="30"/>
                                                         <color key="backgroundColor" red="0.58426284790000005" green="0.58434748650000001" blue="0.58423620460000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -228,7 +228,7 @@
                                                             <constraint firstAttribute="width" constant="25" id="Gr0-Uz-F2V"/>
                                                         </constraints>
                                                     </view>
-                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Answer 2" textAlignment="justified" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mga-Gd-Gji">
+                                                    <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Answer 2" textAlignment="justified" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mga-Gd-Gji">
                                                         <rect key="frame" x="58" y="167" width="291" height="30"/>
                                                         <color key="backgroundColor" red="0.58426284790000005" green="0.58434748650000001" blue="0.58423620460000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -243,7 +243,7 @@
                                                             <constraint firstAttribute="width" constant="25" id="XMT-zT-Sco"/>
                                                         </constraints>
                                                     </view>
-                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Answer 3" textAlignment="justified" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dSb-ag-Xwo">
+                                                    <textField opaque="NO" clipsSubviews="YES" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Answer 3" textAlignment="justified" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dSb-ag-Xwo">
                                                         <rect key="frame" x="58" y="217" width="291" height="30"/>
                                                         <color key="backgroundColor" red="0.58426284790000005" green="0.58434748650000001" blue="0.58423620460000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -258,7 +258,7 @@
                                                             <constraint firstAttribute="width" constant="25" id="Hqk-rc-uOp"/>
                                                         </constraints>
                                                     </view>
-                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Answer 4" textAlignment="justified" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qSA-B1-K3j">
+                                                    <textField opaque="NO" clipsSubviews="YES" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Answer 4" textAlignment="justified" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qSA-B1-K3j">
                                                         <rect key="frame" x="58" y="267" width="291" height="30"/>
                                                         <color key="backgroundColor" red="0.58426284790000005" green="0.58434748650000001" blue="0.58423620460000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -273,6 +273,7 @@
                                                         </constraints>
                                                         <state key="normal" image="plus"/>
                                                         <connections>
+                                                            <action selector="addQuestionTapped:" destination="A4Y-B6-YD5" eventType="touchUpInside" id="gnQ-AF-0mp"/>
                                                             <action selector="backGroundTouched:" destination="A4Y-B6-YD5" eventType="touchUpInside" id="SqE-SM-yuG"/>
                                                         </connections>
                                                     </button>
@@ -353,6 +354,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="addQuestion" destination="baF-jb-cu0" id="ZbW-lM-g8O"/>
                         <outlet property="ans1TextField" destination="Uek-Nj-rBY" id="tuP-oq-Jwe"/>
                         <outlet property="ans2TextField" destination="mga-Gd-Gji" id="DUs-D8-Y9P"/>
                         <outlet property="ans3TextField" destination="dSb-ag-Xwo" id="WjD-iv-rdl"/>

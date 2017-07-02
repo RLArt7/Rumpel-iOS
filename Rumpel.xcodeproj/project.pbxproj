@@ -16,6 +16,7 @@
 		931F48211F0523C7001A1CDD /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931F48201F0523C7001A1CDD /* ChatViewController.swift */; };
 		931F48231F09381C001A1CDD /* ChatViewController+Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931F48221F09381C001A1CDD /* ChatViewController+Buttons.swift */; };
 		931F48261F095E6E001A1CDD /* NewQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931F48251F095E6E001A1CDD /* NewQuestionViewController.swift */; };
+		931F482A1F09813C001A1CDD /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931F48291F09813C001A1CDD /* Extensions.swift */; };
 		93CA4A651EFF9DEE00EFAB45 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93CA4A641EFF9DEE00EFAB45 /* AppDelegate.swift */; };
 		93CA4A671EFF9DEE00EFAB45 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93CA4A661EFF9DEE00EFAB45 /* LoginViewController.swift */; };
 		93CA4A6A1EFF9DEE00EFAB45 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 93CA4A681EFF9DEE00EFAB45 /* Main.storyboard */; };
@@ -44,6 +45,7 @@
 		931F48221F09381C001A1CDD /* ChatViewController+Buttons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ChatViewController+Buttons.swift"; sourceTree = "<group>"; };
 		931F48251F095E6E001A1CDD /* NewQuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewQuestionViewController.swift; sourceTree = "<group>"; };
 		931F48271F096428001A1CDD /* Rumpel-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Rumpel-Bridging-Header.h"; sourceTree = "<group>"; };
+		931F48291F09813C001A1CDD /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		93CA4A611EFF9DEE00EFAB45 /* Rumpel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Rumpel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		93CA4A641EFF9DEE00EFAB45 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		93CA4A661EFF9DEE00EFAB45 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -106,6 +108,14 @@
 			name = NewQuestion;
 			sourceTree = "<group>";
 		};
+		931F48281F098102001A1CDD /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				931F48291F09813C001A1CDD /* Extensions.swift */,
+			);
+			name = Common;
+			sourceTree = "<group>";
+		};
 		93CA4A581EFF9DEE00EFAB45 = {
 			isa = PBXGroup;
 			children = (
@@ -127,6 +137,7 @@
 		93CA4A631EFF9DEE00EFAB45 /* Rumpel */ = {
 			isa = PBXGroup;
 			children = (
+				931F48281F098102001A1CDD /* Common */,
 				93CA4A7D1EFFAB7D00EFAB45 /* Models */,
 				93CA4A791EFFA26600EFAB45 /* ViewControllers */,
 				93CA4A781EFFA25D00EFAB45 /* Managers */,
@@ -330,6 +341,7 @@
 				931F48261F095E6E001A1CDD /* NewQuestionViewController.swift in Sources */,
 				931F48211F0523C7001A1CDD /* ChatViewController.swift in Sources */,
 				93CA4A7F1EFFABCB00EFAB45 /* Answer.swift in Sources */,
+				931F482A1F09813C001A1CDD /* Extensions.swift in Sources */,
 				931F481A1F04CF33001A1CDD /* UserManager.swift in Sources */,
 				93CA4A851EFFB61E00EFAB45 /* Contact.swift in Sources */,
 			);

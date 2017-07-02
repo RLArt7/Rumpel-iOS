@@ -73,5 +73,4 @@ extension ChatViewController
         self.addAnswerButton.addTarget(self, action: #selector(ChatViewController.addQuestion(sender:)), for: .touchUpInside)
         self.view.addSubview(addAnswerButton)
     }
- 
 }
