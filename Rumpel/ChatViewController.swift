@@ -116,7 +116,7 @@ class ChatViewController: JSQMessagesViewController,AddNewQuestionProtocol {
     
     func answerSelected(sender: UIButton!)
     {
-        chat?.fetchOpenQuestoin()?.checkAnswer(withAnswerIndex: sender.tag)
+        _ = chat?.fetchOpenQuestoin()?.checkAnswer(withAnswerIndex: sender.tag)
         messages.removeAll()
         chat?.questions.forEach({ (question) in
             messages.append(JSQMessage(senderId: question.senderId, displayName: question.senderId == self.senderId ? self.senderDisplayName : endPointUserDisplayName, text: question.getMessageTextForQuestion()))

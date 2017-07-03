@@ -13,7 +13,7 @@ protocol AddNewQuestionProtocol:class
 {
     func addQuestionToConversation(question: Question)
 }
-class NewQuestionViewController: UIViewController ,UITextFieldDelegate{
+class NewQuestionViewController: UIViewController ,UITextFieldDelegate ,SelectQuestionFromPoolProtocol{
 
     @IBOutlet var answer1CheckBox: BEMCheckBox!
     @IBOutlet var answer2CheckBox: BEMCheckBox!
@@ -31,6 +31,8 @@ class NewQuestionViewController: UIViewController ,UITextFieldDelegate{
     @IBOutlet var scrollView: UIScrollView!
     
     weak var delegate : AddNewQuestionProtocol?
+    
+    var questionFromPool : Question?
     
 //  MARK: Override Functions
     override func viewDidLoad() {
@@ -61,26 +63,45 @@ class NewQuestionViewController: UIViewController ,UITextFieldDelegate{
     
     @IBAction func poolTapped(_ sender: Any)
     {
-        // TODO: need to open the pool
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier :"QuestionsPoolViewController") as! QuestionsPoolViewController
+        vc.delegate = self
+        vc.modalPresentationStyle = .overFullScreen
+        self.present(vc, animated: true, completion: nil)
     }
     @IBAction func addQuestionTapped(_ sender: Any)
     {
-        let question = Question()
-        question.questionText = questionTextField.text!
-        question.initialTime = Int(Date().timeIntervalSince1970)
-        question.timeToAnswer = 0
-        question.isRightAnswer = false
-        question.isQuestionOpen = true
-        let ans1 = Answer(answerText: ans1TextField.text!, isRight: answer1CheckBox.on)
-        let ans2 = Answer(answerText: ans2TextField.text!, isRight: answer2CheckBox.on)
-        let ans3 = Answer(answerText: ans3TextField.text!, isRight: answer3CheckBox.on)
-        let ans4 = Answer(answerText: ans4TextField.text!, isRight: answer4CheckBox.on)
-        question.answers = [ans1,ans2,ans3,ans4]
-        FirebaseManager.manager.addNewQuestion(withQuestion: question) { (questionId) in
-            question.senderId = UserManager.manager.userId!
-            question.id = questionId!
+        if questionFromPool == nil
+        {
+            let question = Question()
+            question.questionText = questionTextField.text!
+            question.initialTime = Int(Date().timeIntervalSince1970)
+            question.timeToAnswer = 0
+            question.isRightAnswer = false
+            question.isQuestionOpen = true
+            let ans1 = Answer(answerText: ans1TextField.text!, isRight: answer1CheckBox.on)
+            let ans2 = Answer(answerText: ans2TextField.text!, isRight: answer2CheckBox.on)
+            let ans3 = Answer(answerText: ans3TextField.text!, isRight: answer3CheckBox.on)
+            let ans4 = Answer(answerText: ans4TextField.text!, isRight: answer4CheckBox.on)
+            question.answers = [ans1,ans2,ans3,ans4]
+            FirebaseManager.manager.addNewQuestion(withQuestion: question) { (questionId) in
+                question.senderId = UserManager.manager.userId!
+                question.id = questionId!
+                self.close(cleanFileds: true)
+                self.delegate?.addQuestionToConversation(question: question)
+            }
+        }
+        else
+        {
+            questionFromPool?.questionText = questionTextField.text!
+            let ans1 = Answer(answerText: ans1TextField.text!, isRight: answer1CheckBox.on)
+            let ans2 = Answer(answerText: ans2TextField.text!, isRight: answer2CheckBox.on)
+            let ans3 = Answer(answerText: ans3TextField.text!, isRight: answer3CheckBox.on)
+            let ans4 = Answer(answerText: ans4TextField.text!, isRight: answer4CheckBox.on)
+            questionFromPool?.answers = [ans1,ans2,ans3,ans4]
+            questionFromPool?.senderId = UserManager.manager.userId!
+            self.delegate?.addQuestionToConversation(question: questionFromPool!)
             self.close(cleanFileds: true)
-            self.delegate?.addQuestionToConversation(question: question)
         }
     }
     
@@ -91,6 +112,7 @@ class NewQuestionViewController: UIViewController ,UITextFieldDelegate{
         })
         if (flag)
         {
+            questionFromPool = nil
             questionTextField.text = ""
             ans1TextField.text = ""
             ans2TextField.text = ""
@@ -98,6 +120,22 @@ class NewQuestionViewController: UIViewController ,UITextFieldDelegate{
             ans4TextField.text = ""
             addQuestion.isHidden = true
         }
+    }
+    
+    func questionWasSelected(withQuestion question:Question)
+    {
+        self.questionFromPool = question
+        questionTextField.text = question.questionText
+        ans1TextField.text = question.answers[0].answerText
+        ans2TextField.text = question.answers[1].answerText
+        ans3TextField.text = question.answers[2].answerText
+        ans4TextField.text = question.answers[3].answerText
+        answer1CheckBox.on = question.answers[0].isRight
+        answer2CheckBox.on = question.answers[1].isRight
+        answer3CheckBox.on = question.answers[2].isRight
+        answer4CheckBox.on = question.answers[3].isRight
+
+        addQuestion.isHidden = false
     }
     
 //  MARK: Text Field Delegate
@@ -171,7 +209,8 @@ class NewQuestionViewController: UIViewController ,UITextFieldDelegate{
         self.scrollView.isScrollEnabled = false
     }
     
-    func textFieldDidBeginEditing(_ textField: UITextField){
+    func textFieldDidBeginEditing(_ textField: UITextField)
+    {
     }
     
     func textFieldDidEndEditing(_ textField: UITextField)

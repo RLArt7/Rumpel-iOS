@@ -59,7 +59,7 @@ class Question
                 "initialTime":self.initialTime,
                 "questionOpen":self.isQuestionOpen,
                 "isRightAnswer" : self.isRightAnswer,
-                "answer" : self.answer != nil ? self.answer?.getObjectAsDictionary() : Answer(answerText: "", isRight: false).getObjectAsDictionary() ] as [String : Any]
+                "answer" : self.answer != nil ? self.answer!.getObjectAsDictionary() : Answer(answerText: "", isRight: false).getObjectAsDictionary() ] as [String : Any]
         
         var answerDict =  [String: Any]()
         for (index,answer) in answers.enumerated()

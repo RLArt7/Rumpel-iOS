@@ -56,7 +56,7 @@ class Chat
     }
     
     init(snapshot : DataSnapshot) {
-        self.id = snapshot.key as? String ?? ""
+        self.id = snapshot.key as String 
         
         if let dict = snapshot.value as? [String : Any] {
             self.endPoint = dict["endPoint"] as? String ?? ""

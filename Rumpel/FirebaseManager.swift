@@ -14,6 +14,7 @@ class FirebaseManager
 {
     static let manager = FirebaseManager()
     var ref: DatabaseReference!
+    
     func fetchUserChatHistoryMap(completion:@escaping ((_ success:Bool)->Void))
     {
         guard let fbId = UserManager.manager.facebookId else {
@@ -137,6 +138,24 @@ class FirebaseManager
                 completion(nil,error)
             }
         }
+    }
+    
+    func fetchAllQuestions(completion:@escaping (_ : [Question])->Void){
+        var questions = [Question]()
+        ref = Database.database().reference().child("questions")/*.queryLimited(toFirst: 100)*/
+        ref.observeSingleEvent(of: .value, with: { (snapshot) in
+            for snap in snapshot.children.allObjects{
+                if let snapObje = snap as? DataSnapshot
+                {
+                    if let dict = snapObje.value as? [String : Any]
+                    {
+                        let question = Question(question: dict)
+                        questions.append(question)
+                    }
+                }
+            }
+            completion(questions)
+        })
     }
 
 }

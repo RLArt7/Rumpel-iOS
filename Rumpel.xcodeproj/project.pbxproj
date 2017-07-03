@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9312151C1F0AD237005B71BE /* PushNotificationsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9312151B1F0AD237005B71BE /* PushNotificationsManager.swift */; };
+		9312151E1F0AE370005B71BE /* QuestionsPoolViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9312151D1F0AE370005B71BE /* QuestionsPoolViewController.swift */; };
+		931215211F0AE756005B71BE /* QuestionsPoolViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931215201F0AE756005B71BE /* QuestionsPoolViewModel.swift */; };
 		931F48141F04B85F001A1CDD /* ContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931F48131F04B85F001A1CDD /* ContactsViewController.swift */; };
 		931F48161F04B87A001A1CDD /* ContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931F48151F04B87A001A1CDD /* ContactCell.swift */; };
 		931F48181F04C7BF001A1CDD /* ContactsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931F48171F04C7BF001A1CDD /* ContactsManager.swift */; };
@@ -35,6 +38,9 @@
 		5375185B29A5850D30FCDB75 /* Pods_Rumpel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Rumpel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F7F4C8A268862C846F287B8 /* Pods-Rumpel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Rumpel.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Rumpel/Pods-Rumpel.debug.xcconfig"; sourceTree = "<group>"; };
 		745FF2CC4FB440A8B7C70F75 /* Pods-Rumpel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Rumpel.release.xcconfig"; path = "Pods/Target Support Files/Pods-Rumpel/Pods-Rumpel.release.xcconfig"; sourceTree = "<group>"; };
+		9312151B1F0AD237005B71BE /* PushNotificationsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushNotificationsManager.swift; sourceTree = "<group>"; };
+		9312151D1F0AE370005B71BE /* QuestionsPoolViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionsPoolViewController.swift; sourceTree = "<group>"; };
+		931215201F0AE756005B71BE /* QuestionsPoolViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionsPoolViewModel.swift; sourceTree = "<group>"; };
 		931F48131F04B85F001A1CDD /* ContactsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsViewController.swift; sourceTree = "<group>"; };
 		931F48151F04B87A001A1CDD /* ContactCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactCell.swift; sourceTree = "<group>"; };
 		931F48171F04C7BF001A1CDD /* ContactsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsManager.swift; sourceTree = "<group>"; };
@@ -81,6 +87,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		9312151F1F0AE6DB005B71BE /* Pool */ = {
+			isa = PBXGroup;
+			children = (
+				9312151D1F0AE370005B71BE /* QuestionsPoolViewController.swift */,
+				931215201F0AE756005B71BE /* QuestionsPoolViewModel.swift */,
+			);
+			name = Pool;
+			sourceTree = "<group>";
+		};
 		931F48121F04B83D001A1CDD /* Contacts */ = {
 			isa = PBXGroup;
 			children = (
@@ -103,6 +118,7 @@
 		931F48241F095E4A001A1CDD /* NewQuestion */ = {
 			isa = PBXGroup;
 			children = (
+				9312151F1F0AE6DB005B71BE /* Pool */,
 				931F48251F095E6E001A1CDD /* NewQuestionViewController.swift */,
 			);
 			name = NewQuestion;
@@ -159,6 +175,7 @@
 				931F48171F04C7BF001A1CDD /* ContactsManager.swift */,
 				931F48191F04CF33001A1CDD /* UserManager.swift */,
 				931F481D1F04E0EA001A1CDD /* FirebaseManager.swift */,
+				9312151B1F0AD237005B71BE /* PushNotificationsManager.swift */,
 			);
 			name = Managers;
 			sourceTree = "<group>";
@@ -329,14 +346,17 @@
 			files = (
 				931F481E1F04E0EA001A1CDD /* FirebaseManager.swift in Sources */,
 				931F48161F04B87A001A1CDD /* ContactCell.swift in Sources */,
+				9312151C1F0AD237005B71BE /* PushNotificationsManager.swift in Sources */,
 				931F481C1F04D7D5001A1CDD /* ContactsViewModel.swift in Sources */,
 				93CA4A811EFFAD5700EFAB45 /* Question.swift in Sources */,
 				93CA4A831EFFB33300EFAB45 /* Chat.swift in Sources */,
 				93CA4A671EFF9DEE00EFAB45 /* LoginViewController.swift in Sources */,
 				93CA4A651EFF9DEE00EFAB45 /* AppDelegate.swift in Sources */,
+				9312151E1F0AE370005B71BE /* QuestionsPoolViewController.swift in Sources */,
 				931F48231F09381C001A1CDD /* ChatViewController+Buttons.swift in Sources */,
 				93CA4A7B1EFFA2F800EFAB45 /* LoginManager.swift in Sources */,
 				931F48181F04C7BF001A1CDD /* ContactsManager.swift in Sources */,
+				931215211F0AE756005B71BE /* QuestionsPoolViewModel.swift in Sources */,
 				931F48141F04B85F001A1CDD /* ContactsViewController.swift in Sources */,
 				931F48261F095E6E001A1CDD /* NewQuestionViewController.swift in Sources */,
 				931F48211F0523C7001A1CDD /* ChatViewController.swift in Sources */,
