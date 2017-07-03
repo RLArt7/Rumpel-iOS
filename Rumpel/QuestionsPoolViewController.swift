@@ -16,6 +16,7 @@ protocol SelectQuestionFromPoolProtocol: class
 class QuestionsPoolViewController: UIViewController ,QuestionPoolDataProtocol {
 
     @IBOutlet var pickerView: UIPickerView!
+    @IBOutlet var activityIndicator: UIActivityIndicatorView!
     
     var viewModel : QuestionsPoolViewModel?
     weak var delegate : SelectQuestionFromPoolProtocol?
@@ -23,6 +24,7 @@ class QuestionsPoolViewController: UIViewController ,QuestionPoolDataProtocol {
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        self.activityIndicator.startAnimating()
         self.viewModel = QuestionsPoolViewModel(withDelegate: self)
         self.pickerView.delegate = self
         self.pickerView.dataSource = self
@@ -31,6 +33,7 @@ class QuestionsPoolViewController: UIViewController ,QuestionPoolDataProtocol {
     
     func finishLoadData()
     {
+        self.activityIndicator.stopAnimating()
         pickerView.reloadAllComponents()
     }
     @IBAction func cancel(_ sender: Any)

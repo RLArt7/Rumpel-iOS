@@ -390,7 +390,8 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s5z-GV-hg8">
-                                        <rect key="frame" x="8" y="17" width="61" height="30"/>
+                                        <rect key="frame" x="8" y="15" width="72" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <state key="normal" title="&lt; Cancel">
                                             <color key="titleColor" red="0.27450980390000002" green="0.27450980390000002" blue="0.27450980390000002" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
@@ -406,9 +407,13 @@
                                     <constraint firstAttribute="height" constant="64" id="ysD-5o-wGx"/>
                                 </constraints>
                             </view>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="rQt-5t-vhN">
+                                <rect key="frame" x="177.5" y="323.5" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="rQt-5t-vhN" firstAttribute="centerY" secondItem="VM2-go-Hin" secondAttribute="centerY" id="Bp4-Ym-AXT"/>
                             <constraint firstAttribute="trailing" secondItem="Son-BK-4gp" secondAttribute="trailing" id="Mug-nE-XLm"/>
                             <constraint firstItem="bgV-u4-LXj" firstAttribute="top" secondItem="i7u-Kk-Sce" secondAttribute="bottom" id="agl-Z0-eeG"/>
                             <constraint firstItem="i7u-Kk-Sce" firstAttribute="top" secondItem="Son-BK-4gp" secondAttribute="bottom" id="dnl-d8-87F"/>
@@ -416,9 +421,11 @@
                             <constraint firstItem="Son-BK-4gp" firstAttribute="leading" secondItem="VM2-go-Hin" secondAttribute="leading" id="kWs-7R-8T7"/>
                             <constraint firstItem="i7u-Kk-Sce" firstAttribute="leading" secondItem="VM2-go-Hin" secondAttribute="leading" id="vbi-iA-tYY"/>
                             <constraint firstAttribute="trailing" secondItem="i7u-Kk-Sce" secondAttribute="trailing" id="wtt-fh-Q7l"/>
+                            <constraint firstItem="rQt-5t-vhN" firstAttribute="centerX" secondItem="VM2-go-Hin" secondAttribute="centerX" id="zpt-hg-VSi"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="rQt-5t-vhN" id="Boj-qy-eWZ"/>
                         <outlet property="pickerView" destination="i7u-Kk-Sce" id="uKS-3c-5mA"/>
                     </connections>
                 </viewController>
