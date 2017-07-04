@@ -20,6 +20,10 @@ class FirebaseManager
         guard let fbId = UserManager.manager.facebookId else {
             return
         }
+        if fbId == ""
+        {
+            return
+        }
         ref = Database.database().reference().child("users").child(fbId).child("chatIdMap")
         
         ref.observe(.value, with: { (snapshot) in
@@ -159,6 +163,10 @@ class FirebaseManager
     func updateUserToken(completion:@escaping (_ : Bool)->Void)
     {
         guard let fbId = UserManager.manager.facebookId else {
+            return
+        }
+        if fbId == ""
+        {
             return
         }
         ref = Database.database().reference().child("users").child(fbId)

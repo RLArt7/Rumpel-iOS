@@ -17,7 +17,7 @@ class PushNotificationsManager
     
     lazy var defaultHeaders: [String: String] = {
         return ["Content-Type": "application/json",
-                "Authorization": "AAAAXx-VQUg:APA91bFU6v8k4KfT1EMhTJY7Rw7BEBeV6uS5sG_MJvAQ487mmaI2FQ93xNCtAUGTJaq5iXvlapYclxScEG6HOdx483xq8oGTM2OpQMU0ycnBUlLdQKLYLIine2FqCuD2Xwq4zczW4Zeb"]
+                "Authorization": "key=AAAAXx-VQUg:APA91bFU6v8k4KfT1EMhTJY7Rw7BEBeV6uS5sG_MJvAQ487mmaI2FQ93xNCtAUGTJaq5iXvlapYclxScEG6HOdx483xq8oGTM2OpQMU0ycnBUlLdQKLYLIine2FqCuD2Xwq4zczW4Zeb"]
     }()
     
     func sendPush(to notificationObject: PushNotificaionObject, completion: @escaping (_ success: Bool)->Void)  {

@@ -126,6 +126,7 @@ class NewQuestionViewController: UIViewController ,UITextFieldDelegate ,SelectQu
     func clearFields()
     {
         questionFromPool = nil
+        self.group.selectedCheckBox = self.answer1CheckBox
         questionTextField.text = ""
         ans1TextField.text = ""
         ans2TextField.text = ""

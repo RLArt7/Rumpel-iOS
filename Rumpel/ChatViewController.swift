@@ -155,7 +155,7 @@ class ChatViewController: JSQMessagesViewController,AddNewQuestionProtocol {
             if let token = tokenId
             {
                 let pushPayload = NotificationPayload(title: "Rumpel", userName: UserManager.manager.name!, body: "")
-                let pushObject = PushNotificaionObject(to: UserManager.manager.userToken!, notificationPayload: pushPayload)
+                let pushObject = PushNotificaionObject(to: token, notificationPayload: pushPayload)
                 PushNotificationsManager.manager.sendPush(to: pushObject, completion: { (bool) in
                     print("Push was success? \(bool)")
                 })

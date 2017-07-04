@@ -30,7 +30,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         FBSDKProfile.enableUpdates(onAccessTokenChange: true)
-        
         if LoginManager.manager.currnetUser() != nil
         {
             UserManager.manager.fetchUserFromDefaults()
@@ -39,6 +38,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 if UserDefaults.standard.bool(forKey: kPushNotificationsIsOn) || !UserDefaults.standard.bool(forKey: kIsFirstTimeKey)
                 {
                     UserDefaults.standard.set(true, forKey: kIsFirstTimeKey)
+//                    UserManager.manager.userToken = InstanceID.instanceID().token()
                     self.registerPushNotifications(application: application)
                 }
             })
@@ -47,6 +47,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             navController.modalPresentationStyle = .overFullScreen
             self.window?.rootViewController = navController
             self.window?.makeKeyAndVisible()
+        }
+        else
+        {
+            self.registerPushNotifications(application: application)
         }
         
         NotificationCenter.default.addObserver(self,
@@ -111,8 +115,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Messaging.messaging()
             .setAPNSToken(deviceToken, type: MessagingAPNSTokenType.unknown)
         
+        if let refreshedToken = InstanceID.instanceID().token() {
+            UserManager.manager.userToken = refreshedToken
+            FirebaseManager.manager.updateUserToken(completion: { (bool) in
+                print(bool)
+            })
+        }
         let userDefaults = UserDefaults.standard
         userDefaults.set(deviceTokenString , forKey: kNotificationsToken)
+        userDefaults.set(true , forKey: kPushNotificationsIsOn)
     }
     
     //  MARK: FireBase Push notifications
