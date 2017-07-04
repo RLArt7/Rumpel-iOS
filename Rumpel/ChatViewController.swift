@@ -316,8 +316,6 @@ class ChatViewController: JSQMessagesViewController,AddNewQuestionProtocol {
  
             }
         }
-//        
-//        JSQMessagesAvatarImageFactory.avatarImage(withUserInitials: message.senderId == senderId ? self.getUserInitials(withUserName: self.senderDisplayName) : self.getUserInitials(withUserName: self.contact.name), backgroundColor: UIColor.jsq_messageBubbleGreen(), textColor:  UIColor.white, font:  UIFont.systemFont(ofSize: 12), diameter: 25)
     }
    
 }

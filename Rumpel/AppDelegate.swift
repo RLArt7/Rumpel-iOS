@@ -59,6 +59,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
+    func returnToLoginPage()
+    {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier :"LoginViewController") as! LoginViewController
+        vc.modalPresentationStyle = .overFullScreen
+        self.window?.rootViewController = vc
+        self.window?.makeKeyAndVisible()
+    }
+    
     func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
         
         let handled = FBSDKApplicationDelegate.sharedInstance().application(application,
@@ -200,13 +209,6 @@ extension AppDelegate : MessagingDelegate {
     func messaging(_ messaging: Messaging, didRefreshRegistrationToken fcmToken: String)
     {
         UserManager.manager.userToken = fcmToken
-        
-        // unregister from firebase messaging and from walla messaging server
-//        FIRInstanceID.instanceID().delete(handler: { (error) in
-//            
-//        })
-        // register to firebase messaging and to walla messaging server
-//        FIRInstanceID.instanceID().token()
     }
 }
 

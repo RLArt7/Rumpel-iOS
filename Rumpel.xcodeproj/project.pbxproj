@@ -10,6 +10,7 @@
 		9312151C1F0AD237005B71BE /* PushNotificationsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9312151B1F0AD237005B71BE /* PushNotificationsManager.swift */; };
 		9312151E1F0AE370005B71BE /* QuestionsPoolViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9312151D1F0AE370005B71BE /* QuestionsPoolViewController.swift */; };
 		931215211F0AE756005B71BE /* QuestionsPoolViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931215201F0AE756005B71BE /* QuestionsPoolViewModel.swift */; };
+		931215251F0C0A74005B71BE /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931215241F0C0A74005B71BE /* SettingsViewController.swift */; };
 		931F48141F04B85F001A1CDD /* ContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931F48131F04B85F001A1CDD /* ContactsViewController.swift */; };
 		931F48161F04B87A001A1CDD /* ContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931F48151F04B87A001A1CDD /* ContactCell.swift */; };
 		931F48181F04C7BF001A1CDD /* ContactsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931F48171F04C7BF001A1CDD /* ContactsManager.swift */; };
@@ -42,6 +43,7 @@
 		9312151D1F0AE370005B71BE /* QuestionsPoolViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionsPoolViewController.swift; sourceTree = "<group>"; };
 		931215201F0AE756005B71BE /* QuestionsPoolViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionsPoolViewModel.swift; sourceTree = "<group>"; };
 		931215221F0B7B8B005B71BE /* Rumpel.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Rumpel.entitlements; sourceTree = "<group>"; };
+		931215241F0C0A74005B71BE /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		931F48131F04B85F001A1CDD /* ContactsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsViewController.swift; sourceTree = "<group>"; };
 		931F48151F04B87A001A1CDD /* ContactCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactCell.swift; sourceTree = "<group>"; };
 		931F48171F04C7BF001A1CDD /* ContactsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsManager.swift; sourceTree = "<group>"; };
@@ -95,6 +97,14 @@
 				931215201F0AE756005B71BE /* QuestionsPoolViewModel.swift */,
 			);
 			name = Pool;
+			sourceTree = "<group>";
+		};
+		931215231F0C0A52005B71BE /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				931215241F0C0A74005B71BE /* SettingsViewController.swift */,
+			);
+			name = Settings;
 			sourceTree = "<group>";
 		};
 		931F48121F04B83D001A1CDD /* Contacts */ = {
@@ -185,6 +195,7 @@
 		93CA4A791EFFA26600EFAB45 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				931215231F0C0A52005B71BE /* Settings */,
 				931F48241F095E4A001A1CDD /* NewQuestion */,
 				931F481F1F0523A7001A1CDD /* Chat */,
 				931F48121F04B83D001A1CDD /* Contacts */,
@@ -353,6 +364,7 @@
 			files = (
 				931F481E1F04E0EA001A1CDD /* FirebaseManager.swift in Sources */,
 				931F48161F04B87A001A1CDD /* ContactCell.swift in Sources */,
+				931215251F0C0A74005B71BE /* SettingsViewController.swift in Sources */,
 				9312151C1F0AD237005B71BE /* PushNotificationsManager.swift in Sources */,
 				931F481C1F04D7D5001A1CDD /* ContactsViewModel.swift in Sources */,
 				93CA4A811EFFAD5700EFAB45 /* Question.swift in Sources */,

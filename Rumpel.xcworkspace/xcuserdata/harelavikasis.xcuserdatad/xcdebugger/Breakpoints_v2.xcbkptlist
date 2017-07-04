@@ -172,7 +172,7 @@
                   moduleName = "Rumpel"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/harelavikasis/Desktop/iOS/Rumpel/Rumpel/Rumpel/PushNotificationsManager.swift"
-                  timestampString = "520881730.687864"
+                  timestampString = "520884956.163067"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "26"
@@ -187,7 +187,7 @@
                   moduleName = "Rumpel"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/harelavikasis/Desktop/iOS/Rumpel/Rumpel/Rumpel/PushNotificationsManager.swift"
-                  timestampString = "520881730.689162"
+                  timestampString = "520884956.164398"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "27"
@@ -204,61 +204,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Rumpel/AppDelegate.swift"
-            timestampString = "520878714.487334"
+            timestampString = "520884684.514467"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "138"
-            endingLineNumber = "138"
+            startingLineNumber = "147"
+            endingLineNumber = "147"
             landmarkName = "tokenRefreshNotification(notification:)"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Rumpel/ContactsViewModel.swift"
-            timestampString = "520877838.956102"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "37"
-            endingLineNumber = "37"
-            landmarkName = "fetchContacts(completionBlock:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Rumpel.ContactsViewModel.(fetchContacts (completionBlock : (Swift.Bool) -&gt; ()) -&gt; ()).(closure #1).(closure #1)"
-                  moduleName = "Rumpel"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/harelavikasis/Desktop/iOS/Rumpel/Rumpel/Rumpel/ContactsViewModel.swift"
-                  timestampString = "520881730.694782"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "37"
-                  endingLineNumber = "37"
-                  offsetFromSymbolStart = "208">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Rumpel.ContactsViewModel.(fetchContacts (completionBlock : (Swift.Bool) -&gt; ()) -&gt; ()).(closure #1).(closure #1)"
-                  moduleName = "Rumpel"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/harelavikasis/Desktop/iOS/Rumpel/Rumpel/Rumpel/ContactsViewModel.swift"
-                  timestampString = "520881730.696053"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "37"
-                  endingLineNumber = "37"
-                  offsetFromSymbolStart = "748">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

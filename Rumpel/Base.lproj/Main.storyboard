@@ -7,6 +7,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -14,7 +15,7 @@
         <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="LoginViewController" customModule="Rumpel" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" id="BYZ-38-t0r" customClass="LoginViewController" customModule="Rumpel" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -133,7 +134,13 @@
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
-                    <navigationItem key="navigationItem" id="gJx-Qx-Ckn"/>
+                    <navigationItem key="navigationItem" id="gJx-Qx-Ckn">
+                        <barButtonItem key="rightBarButtonItem" image="settings" id="AQ7-Xl-dah">
+                            <connections>
+                                <segue destination="AjK-K2-PLD" kind="show" id="IoA-Nv-cEk"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="activityIndicator" destination="jvq-ad-VyY" id="aEV-Ri-eaU"/>
                         <outlet property="tableView" destination="G8v-EF-VpK" id="1UC-7q-FCz"/>
@@ -142,6 +149,56 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Zz-T3-fRy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1860" y="35.532233883058474"/>
+        </scene>
+        <!--Settings View Controller-->
+        <scene sceneID="RXi-In-LvC">
+            <objects>
+                <viewController id="AjK-K2-PLD" customClass="SettingsViewController" customModule="Rumpel" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="dR9-AL-KBl"/>
+                        <viewControllerLayoutGuide type="bottom" id="UtB-Bg-bes"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="f0E-vm-Lp2">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cRu-eW-cH4">
+                                <rect key="frame" x="150" y="572" width="75" height="75"/>
+                                <state key="normal" image="logout"/>
+                                <connections>
+                                    <action selector="logOut:" destination="AjK-K2-PLD" eventType="touchUpInside" id="fZC-Cs-dp9"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notifications" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UUz-dD-6n1">
+                                <rect key="frame" x="25" y="88" width="109.5" height="21"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cO7-kO-Ncs">
+                                <rect key="frame" x="285" y="83" width="51" height="31"/>
+                                <connections>
+                                    <action selector="setNotificationsOnOff:" destination="AjK-K2-PLD" eventType="valueChanged" id="cbB-qM-adZ"/>
+                                </connections>
+                            </switch>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="cO7-kO-Ncs" firstAttribute="centerY" secondItem="UUz-dD-6n1" secondAttribute="centerY" id="F6f-0y-k4S"/>
+                            <constraint firstItem="UtB-Bg-bes" firstAttribute="top" secondItem="cRu-eW-cH4" secondAttribute="bottom" constant="20" id="KPO-Sj-LSm"/>
+                            <constraint firstItem="UUz-dD-6n1" firstAttribute="top" secondItem="dR9-AL-KBl" secondAttribute="bottom" constant="24" id="VvC-fV-VUV"/>
+                            <constraint firstItem="cRu-eW-cH4" firstAttribute="centerX" secondItem="f0E-vm-Lp2" secondAttribute="centerX" id="cUO-dA-Boa"/>
+                            <constraint firstItem="UUz-dD-6n1" firstAttribute="leading" secondItem="f0E-vm-Lp2" secondAttribute="leading" constant="25" id="fAb-Xo-Iqq"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="cO7-kO-Ncs" secondAttribute="trailing" constant="25" id="gB4-Ph-Rgb"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="notificationSwitch" destination="cO7-kO-Ncs" id="RpM-FI-c4f"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UpW-BM-5s4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2670" y="-370"/>
         </scene>
         <!--Chat View Controller-->
         <scene sceneID="Es7-ff-rOv">
@@ -159,7 +216,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="seB-Ia-lsI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2669.5999999999999" y="35.532233883058474"/>
+            <point key="canvasLocation" x="2670" y="469"/>
         </scene>
         <!--New Question View Controller-->
         <scene sceneID="f8g-Hw-Kwf">
@@ -465,7 +522,9 @@
     <resources>
         <image name="facebook_button" width="154" height="26"/>
         <image name="login_background" width="400" height="301"/>
+        <image name="logout" width="75" height="75"/>
         <image name="plus" width="64" height="64"/>
         <image name="profile_icon" width="50" height="50"/>
+        <image name="settings" width="19" height="19"/>
     </resources>
 </document>
