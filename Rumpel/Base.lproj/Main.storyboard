@@ -27,14 +27,14 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5F0-cC-TYE">
-                                <rect key="frame" x="100" y="571" width="175" height="58"/>
+                                <rect key="frame" x="110.5" y="603" width="154" height="26"/>
                                 <state key="normal" image="facebook_button"/>
                                 <connections>
                                     <action selector="loginAction" destination="BYZ-38-t0r" eventType="touchUpInside" id="ZHp-Ok-jYB"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcom To Rumpel" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vry-OQ-frP">
-                                <rect key="frame" x="62.5" y="116.5" width="250.5" height="34"/>
+                                <rect key="frame" x="62.5" y="86.5" width="250.5" height="34"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="29"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -48,7 +48,7 @@
                             <constraint firstItem="aHE-gJ-V7q" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="6H1-z2-Iit"/>
                             <constraint firstItem="aHE-gJ-V7q" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="7XL-hs-Y9n"/>
                             <constraint firstItem="eeN-cg-NpE" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="GIe-Kh-1yN"/>
-                            <constraint firstItem="Vry-OQ-frP" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-200" id="Sij-g8-wvV"/>
+                            <constraint firstItem="Vry-OQ-frP" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="86.5" id="SCL-SY-YYz"/>
                             <constraint firstItem="5F0-cC-TYE" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="U00-10-Z6w"/>
                             <constraint firstItem="eeN-cg-NpE" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="fW0-iT-vtI"/>
                             <constraint firstAttribute="trailing" secondItem="eeN-cg-NpE" secondAttribute="trailing" id="kgJ-iD-Uww"/>
@@ -64,6 +64,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="-17" y="36"/>
         </scene>
         <!--Contacts View Controller-->
         <scene sceneID="7Vt-Zd-hPe">
@@ -85,7 +86,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2Ka-hY-nkR" id="WMD-YY-nvs">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="59.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_icon" translatesAutoresizingMaskIntoConstraints="NO" id="TT2-Og-VVM">
@@ -462,7 +463,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="facebook_button" width="175" height="58"/>
+        <image name="facebook_button" width="154" height="26"/>
         <image name="login_background" width="400" height="301"/>
         <image name="plus" width="64" height="64"/>
         <image name="profile_icon" width="50" height="50"/>
