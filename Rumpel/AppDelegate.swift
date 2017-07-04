@@ -30,14 +30,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         FBSDKProfile.enableUpdates(onAccessTokenChange: true)
-        if LoginManager.manager.currnetUser() != nil
+        
+        UserManager.manager.fetchUserFromDefaults()
+        
+        if LoginManager.manager.currnetUser() != nil && UserManager.manager.name != ""
         {
-            UserManager.manager.fetchUserFromDefaults()
             FirebaseManager.manager.fetchUserChatHistoryMap(completion: { (Bool) in
                 
                 if UserDefaults.standard.bool(forKey: kPushNotificationsIsOn) || !UserDefaults.standard.bool(forKey: kIsFirstTimeKey)
                 {
-//                    UserManager.manager.userToken = InstanceID.instanceID().token()
                     self.registerPushNotifications(application: application)
                 }
             })
