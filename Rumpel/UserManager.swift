@@ -30,6 +30,7 @@ class UserManager
     }
     var facebookId : String?
     var userId: String?
+    var userPhotoUrl : URL?
     var chatsIdMap = [String:String]()
     
     func setChatIdMap(snapshot : DataSnapshot)

@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import UIKit
+import AlamofireImage
 
 extension UIViewController {
     func hideKeyboardWhenTappedAround() {
@@ -17,5 +19,18 @@ extension UIViewController {
     
     func dismissKeyboard() {
         view.endEditing(true)
+    }
+}
+
+extension UIImageView
+{
+    static let transition = UIImageView.ImageTransition.crossDissolve(0.20)
+
+    class func setImage(imageView: UIImageView, url: URL,  placeholder: UIImage?){
+        imageView.af_setImage(withURL: url, placeholderImage: placeholder, filter: nil, progress: { (progress) in
+            
+        }, progressQueue: DispatchQueue.main, imageTransition: transition, runImageTransitionIfCached: false) { (image) in
+            
+        }
     }
 }

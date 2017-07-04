@@ -12,4 +12,5 @@ class Contact
 {
     var name = ""
     var id = ""
+    var imageUrl = ""
 }

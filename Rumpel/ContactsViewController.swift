@@ -64,8 +64,7 @@ extension ContactsViewController : UITableViewDelegate,UITableViewDataSource
 
         FirebaseManager.manager.fetchUserConversation(withchatId: UserManager.manager.chatsIdMap[(viewModel.getContactForIndex(index: indexPath.row)?.id)!]!, endPoint: (viewModel.getContactForIndex(index: indexPath.row)?.id)!) { (Bool,chat) in
             chatVC.chat = chat
-            chatVC.endPointUserDisplayName = self.viewModel.getContactForIndex(index: indexPath.row)?.name
-            chatVC.endPointFacebookId = self.viewModel.getContactForIndex(index: indexPath.row)?.id
+            chatVC.contact = self.viewModel.getContactForIndex(index: indexPath.row)
             if !self.isAlraedyShow
             {
                 self.navigationController?.pushViewController(chatVC, animated: true)

@@ -1,5 +1,7 @@
 PODS:
   - Alamofire (4.4.0)
+  - AlamofireImage (3.2.0):
+    - Alamofire (~> 4.1)
   - BEMCheckBox (1.4.1)
   - Bolts (1.8.4):
     - Bolts/AppLinks (= 1.8.4)
@@ -63,6 +65,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire
+  - AlamofireImage
   - BEMCheckBox
   - FBSDKCoreKit
   - FBSDKLoginKit
@@ -74,6 +77,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
+  AlamofireImage: 157ed682cc81d3b9db4fb90c1f12180ac552d93b
   BEMCheckBox: 5ba6e37ade3d3657b36caecc35c8b75c6c2b1a4e
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
   FBSDKCoreKit: 9c2daf0162214d6d2e21cf8208a9c6c2a2e42b9c
@@ -91,6 +95,6 @@ SPEC CHECKSUMS:
   JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
   Protobuf: d582fecf68201eac3d79ed61369ef45734394b9c
 
-PODFILE CHECKSUM: 9d70a92e0b132d9866d6d2cc48570dd5e5530fca
+PODFILE CHECKSUM: 4de3445ab06698e35b9ecc614e32d64acb015e78
 
 COCOAPODS: 1.2.1

@@ -18,6 +18,12 @@ class ContactCell: UITableViewCell {
     {
         self.contact = contact
         self.contactNameLabel.text = contact.name
+        if let url = URL(string: contact.imageUrl) {
+            UIImageView.setImage(imageView: profileImageView, url: url, placeholder: #imageLiteral(resourceName: "profile_icon"))
+        }
+        
+        profileImageView.layer.cornerRadius = profileImageView.frame.width / 2
+        profileImageView.layer.masksToBounds = true
     }
 
 }

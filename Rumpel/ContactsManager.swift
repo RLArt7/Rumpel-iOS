@@ -18,6 +18,10 @@ class ContactsManager
     {
             data.forEach { (contactJson) in
             let contact = Contact()
+            if let url = ((contactJson["picture"] as? [String:Any])?["data"] as? [String:Any])?["url"] as? String
+            {
+                contact.imageUrl = url
+            }
             if let name = contactJson["name"] as? String , let id = contactJson["id"] as? String
             {
                 contact.id = id

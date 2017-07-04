@@ -27,7 +27,7 @@ class ContactsViewModel
     func fetchContacts(completionBlock:@escaping ((_ success:Bool)->Void))
     {
         let cerdential = FacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
-        FBSDKGraphRequest(graphPath: "me/friends", parameters: ["fields" : "name,email"/*,picture.width(512).height(512)"*/]).start(completionHandler: { (connection, resultObj, error) in
+        FBSDKGraphRequest(graphPath: "me/friends", parameters: ["fields" : "name,email,picture.width(512).height(512)"]).start(completionHandler: { (connection, resultObj, error) in
             Auth.auth().signIn(with: cerdential, completion: { (user, error) in
                 if error != nil{
                     completionBlock(false)
@@ -38,6 +38,7 @@ class ContactsViewModel
                     {
                         ContactsManager.manager.fetchContacts(withDict: data)
                     }
+                    UserManager.manager.userPhotoUrl = user?.photoURL
                     FirebaseManager.manager.createUser(completion: { (data, error) in
                         if error != nil
                         {

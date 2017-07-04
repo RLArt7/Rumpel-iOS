@@ -8,6 +8,7 @@
 
 import UIKit
 import JSQMessagesViewController
+import AlamofireImage
 
 public enum Setting: String{
     case removeBubbleTails = "Remove message bubble tails"
@@ -40,20 +41,27 @@ class ChatViewController: JSQMessagesViewController,AddNewQuestionProtocol {
             }
         }
     }
-    var endPointUserDisplayName: String!
-    var endPointFacebookId : String!
+    var contact: Contact!
     var messages = [JSQMessage]()
     let defaults = UserDefaults.standard
     var incomingBubble: JSQMessagesBubbleImage!
     var outgoingBubble: JSQMessagesBubbleImage!
-    
+    var userImage = UIImageView()
+    var contactImage = UIImageView()
+
 //  MARK: Override Functions
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if let url = URL(string: contact.imageUrl) {
+            UIImageView.setImage(imageView: contactImage, url: url, placeholder: nil)
+        }
+        UIImageView.setImage(imageView: userImage, url: UserManager.manager.userPhotoUrl!, placeholder: nil)
+        
         addQuestionVC = self.theStoryboard.instantiateViewController(withIdentifier :"NewQuestionViewController") as! NewQuestionViewController
         addQuestionVC.modalPresentationStyle = .overFullScreen
         addQuestionVC.delegate = self
-        self.title = "\(endPointUserDisplayName!)"
+        self.title = "\(contact.name)"
         self.inputToolbar.isHidden = true
         self.senderId = UserManager.manager.userId
         self.senderDisplayName = UserManager.manager.name
@@ -88,7 +96,7 @@ class ChatViewController: JSQMessagesViewController,AddNewQuestionProtocol {
         addAnswerButton.removeFromSuperview()
         
         chat?.questions.forEach({ (question) in
-            messages.append(JSQMessage(senderId: question.senderId, displayName: question.senderId == self.senderId ? self.senderDisplayName : endPointUserDisplayName, text: question.getMessageTextForQuestion()))
+            messages.append(JSQMessage(senderId: question.senderId, displayName: question.senderId == self.senderId ? self.senderDisplayName : contact.name, text: question.getMessageTextForQuestion()))
         })
         
         if (chat?.isThereOpenQuestion)!
@@ -125,7 +133,7 @@ class ChatViewController: JSQMessagesViewController,AddNewQuestionProtocol {
         _ = chat?.fetchOpenQuestoin()?.checkAnswer(withAnswerIndex: sender.tag)
         messages.removeAll()
         chat?.questions.forEach({ (question) in
-            messages.append(JSQMessage(senderId: question.senderId, displayName: question.senderId == self.senderId ? self.senderDisplayName : endPointUserDisplayName, text: question.getMessageTextForQuestion()))
+            messages.append(JSQMessage(senderId: question.senderId, displayName: question.senderId == self.senderId ? self.senderDisplayName : contact.name, text: question.getMessageTextForQuestion()))
         })
         chat?.isThereOpenQuestion = false
         self.updatChatInFirebase()
@@ -151,7 +159,7 @@ class ChatViewController: JSQMessagesViewController,AddNewQuestionProtocol {
         self.chat?.isThereOpenQuestion = true
         self.scrollToBottom(animated: true)
         FirebaseManager.manager.updateChat(withChat: chat!)
-        FirebaseManager.manager.fetchContactToken(withContactId: self.endPointFacebookId) { (tokenId) in
+        FirebaseManager.manager.fetchContactToken(withContactId: self.contact.id) { (tokenId) in
             if let token = tokenId
             {
                 let pushPayload = NotificationPayload(title: "Rumpel", userName: UserManager.manager.name!, body: "")
@@ -179,7 +187,7 @@ class ChatViewController: JSQMessagesViewController,AddNewQuestionProtocol {
     
     override func collectionView(_ collectionView: JSQMessagesCollectionView, avatarImageDataForItemAt indexPath: IndexPath) -> JSQMessageAvatarImageDataSource? {
         let message = messages[indexPath.item]
-        let avatar = JSQMessagesAvatarImageFactory.avatarImage(withUserInitials: message.senderId == senderId ? self.getUserInitials(withUserName: self.senderDisplayName) : self.getUserInitials(withUserName: self.endPointUserDisplayName), backgroundColor: UIColor.jsq_messageBubbleGreen(), textColor:  UIColor.white, font:  UIFont.systemFont(ofSize: 12), diameter: 25)
+        let avatar = getAvatar(forSenderId: message.senderId)
         return avatar
     }
     
@@ -281,6 +289,35 @@ class ChatViewController: JSQMessagesViewController,AddNewQuestionProtocol {
             return nameArray[0].substring(to:nameArray[0].index(nameArray[0].startIndex, offsetBy: 1)).uppercased()
         }
         return "NA"
+    }
+    
+    private func getAvatar(forSenderId id: String) -> JSQMessagesAvatarImage?
+    {
+        if id != UserManager.manager.userId
+        {
+            if contact.imageUrl == "" || contactImage.image == nil
+            {
+                return JSQMessagesAvatarImageFactory.avatarImage(withUserInitials: self.getUserInitials(withUserName: self.contact.name), backgroundColor: UIColor.jsq_messageBubbleGreen(), textColor:  UIColor.white, font:  UIFont.systemFont(ofSize: 12), diameter: 25)
+            }
+            else
+            {
+                return JSQMessagesAvatarImageFactory.avatarImage(with: contactImage.image, diameter: 25)
+            }
+        }
+        else
+        {
+            if (UserManager.manager.userPhotoUrl == nil || userImage.image == nil)
+            {
+                return JSQMessagesAvatarImageFactory.avatarImage(withUserInitials: self.getUserInitials(withUserName: UserManager.manager.name!), backgroundColor: UIColor.jsq_messageBubbleGreen(), textColor:  UIColor.white, font:  UIFont.systemFont(ofSize: 12), diameter: 25)
+            }
+            else
+            {
+                return JSQMessagesAvatarImageFactory.avatarImage(with: userImage.image, diameter: 25)
+ 
+            }
+        }
+//        
+//        JSQMessagesAvatarImageFactory.avatarImage(withUserInitials: message.senderId == senderId ? self.getUserInitials(withUserName: self.senderDisplayName) : self.getUserInitials(withUserName: self.contact.name), backgroundColor: UIColor.jsq_messageBubbleGreen(), textColor:  UIColor.white, font:  UIFont.systemFont(ofSize: 12), diameter: 25)
     }
    
 }

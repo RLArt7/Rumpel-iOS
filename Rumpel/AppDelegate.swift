@@ -37,7 +37,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 
                 if UserDefaults.standard.bool(forKey: kPushNotificationsIsOn) || !UserDefaults.standard.bool(forKey: kIsFirstTimeKey)
                 {
-                    UserDefaults.standard.set(true, forKey: kIsFirstTimeKey)
 //                    UserManager.manager.userToken = InstanceID.instanceID().token()
                     self.registerPushNotifications(application: application)
                 }
@@ -115,15 +114,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Messaging.messaging()
             .setAPNSToken(deviceToken, type: MessagingAPNSTokenType.unknown)
         
-        if let refreshedToken = InstanceID.instanceID().token() {
-            UserManager.manager.userToken = refreshedToken
-            FirebaseManager.manager.updateUserToken(completion: { (bool) in
-                print(bool)
-            })
+        if UserDefaults.standard.bool(forKey: kPushNotificationsIsOn) || !UserDefaults.standard.bool(forKey: kIsFirstTimeKey)
+        {
+            UserDefaults.standard.set(true, forKey: kIsFirstTimeKey)
+
+            if let refreshedToken = InstanceID.instanceID().token() {
+                print("InstanceID token: \(refreshedToken)")
+                UserManager.manager.userToken = refreshedToken
+                FirebaseManager.manager.updateUserToken(completion: { (bool) in
+                    print(bool)
+                })
+            }
+            let userDefaults = UserDefaults.standard
+            userDefaults.set(deviceTokenString , forKey: kNotificationsToken)
+            userDefaults.set(true , forKey: kPushNotificationsIsOn)
         }
-        let userDefaults = UserDefaults.standard
-        userDefaults.set(deviceTokenString , forKey: kNotificationsToken)
-        userDefaults.set(true , forKey: kPushNotificationsIsOn)
+        
     }
     
     //  MARK: FireBase Push notifications

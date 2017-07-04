@@ -90,13 +90,14 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_icon" translatesAutoresizingMaskIntoConstraints="NO" id="TT2-Og-VVM">
-                                                    <rect key="frame" x="16" y="0.0" width="59.5" height="59.5"/>
+                                                    <rect key="frame" x="16" y="5" width="50" height="50"/>
                                                     <constraints>
+                                                        <constraint firstAttribute="width" constant="50" id="QtZ-hj-mOR"/>
                                                         <constraint firstAttribute="width" secondItem="TT2-Og-VVM" secondAttribute="height" multiplier="1:1" id="yWH-ox-g1z"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contact Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9O1-c8-l5s">
-                                                    <rect key="frame" x="83" y="20" width="117" height="20"/>
+                                                    <rect key="frame" x="73.5" y="20" width="117" height="20"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -104,11 +105,10 @@
                                             </subviews>
                                             <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
+                                                <constraint firstItem="TT2-Og-VVM" firstAttribute="centerY" secondItem="WMD-YY-nvs" secondAttribute="centerY" id="7m9-7o-FiL"/>
                                                 <constraint firstItem="9O1-c8-l5s" firstAttribute="leading" secondItem="TT2-Og-VVM" secondAttribute="trailing" constant="7.5" id="Ceb-Fa-2Jj"/>
                                                 <constraint firstItem="9O1-c8-l5s" firstAttribute="centerY" secondItem="WMD-YY-nvs" secondAttribute="centerY" id="DeW-bf-8bb"/>
-                                                <constraint firstAttribute="bottom" secondItem="TT2-Og-VVM" secondAttribute="bottom" id="Ykp-Mg-D38"/>
                                                 <constraint firstItem="TT2-Og-VVM" firstAttribute="leading" secondItem="WMD-YY-nvs" secondAttribute="leading" constant="16" id="aMO-8K-BR6"/>
-                                                <constraint firstItem="TT2-Og-VVM" firstAttribute="top" secondItem="WMD-YY-nvs" secondAttribute="top" id="lpm-6L-3tz"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
