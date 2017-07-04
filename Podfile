@@ -16,4 +16,6 @@ pod 'FBSDKLoginKit'
 pod 'FBSDKCoreKit'
 pod 'JSQMessagesViewController'
 pod 'BEMCheckBox'
+pod 'Alamofire'
+
 end

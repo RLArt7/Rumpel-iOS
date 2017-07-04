@@ -69,6 +69,12 @@ class NewQuestionViewController: UIViewController ,UITextFieldDelegate ,SelectQu
         vc.modalPresentationStyle = .overFullScreen
         self.present(vc, animated: true, completion: nil)
     }
+    
+    @IBAction func resetButton(_ sender: Any)
+    {
+        clearFields()
+    }
+    
     @IBAction func addQuestionTapped(_ sender: Any)
     {
         if questionFromPool == nil
@@ -100,6 +106,7 @@ class NewQuestionViewController: UIViewController ,UITextFieldDelegate ,SelectQu
             let ans4 = Answer(answerText: ans4TextField.text!, isRight: answer4CheckBox.on)
             questionFromPool?.answers = [ans1,ans2,ans3,ans4]
             questionFromPool?.senderId = UserManager.manager.userId!
+            questionFromPool?.isQuestionOpen = true
             self.delegate?.addQuestionToConversation(question: questionFromPool!)
             self.close(cleanFileds: true)
         }
@@ -112,14 +119,19 @@ class NewQuestionViewController: UIViewController ,UITextFieldDelegate ,SelectQu
         })
         if (flag)
         {
-            questionFromPool = nil
-            questionTextField.text = ""
-            ans1TextField.text = ""
-            ans2TextField.text = ""
-            ans3TextField.text = ""
-            ans4TextField.text = ""
-            addQuestion.isHidden = true
+           clearFields()
         }
+    }
+    
+    func clearFields()
+    {
+        questionFromPool = nil
+        questionTextField.text = ""
+        ans1TextField.text = ""
+        ans2TextField.text = ""
+        ans3TextField.text = ""
+        ans4TextField.text = ""
+        addQuestion.isHidden = true
     }
     
     func questionWasSelected(withQuestion question:Question)

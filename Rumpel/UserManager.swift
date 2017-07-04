@@ -22,14 +22,20 @@ class UserManager
     
     var name : String?
     var userToken : String?
+    {
+        didSet{
+            UserDefaults.standard.set(self.userToken, forKey: UserFields.userToken.rawValue)
+
+        }
+    }
     var facebookId : String?
     var userId: String?
     var chatsIdMap = [String:String]()
     
     func setChatIdMap(snapshot : DataSnapshot)
     {
-        if let key = snapshot.key as? String , let value = snapshot.value as? String {
-            chatsIdMap[key] = value
+        if let value = snapshot.value as? String {
+            chatsIdMap[snapshot.key] = value
         }
     }
     
@@ -38,8 +44,17 @@ class UserManager
         self.name = name
         self.facebookId = facebookId
         self.userId = userId
-        self.userToken = userToken
         self.saveUserToDefaults()
+        self.userToken = userToken
+    }
+    
+    func getDictionaryRepresentation()->[String:Any]
+    {
+        return  ["name": self.name ?? "",
+                  "userToken":self.userToken ?? "",
+                  "facebookId":self.facebookId ?? "",
+                  "userId":self.userId ?? "",
+                  "chatsIdMap":self.chatsIdMap]
     }
     
     func saveUserToDefaults()

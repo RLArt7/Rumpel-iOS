@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Rumpel/FirebaseManager.swift"
-            timestampString = "520810275.489423"
+            timestampString = "520851771.433355"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "108"
-            endingLineNumber = "108"
+            startingLineNumber = "124"
+            endingLineNumber = "124"
             landmarkName = "createUser(completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -44,11 +44,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Rumpel/ChatViewController.swift"
-            timestampString = "520721711.886961"
+            timestampString = "520855443.449402"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "92"
-            endingLineNumber = "92"
+            startingLineNumber = "94"
+            endingLineNumber = "94"
             landmarkName = "setOutlets()"
             landmarkType = "7">
          </BreakpointContent>
@@ -76,11 +76,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Rumpel/NewQuestionViewController.swift"
-            timestampString = "520812048.141541"
+            timestampString = "520852235.740196"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "218"
-            endingLineNumber = "218"
+            startingLineNumber = "230"
+            endingLineNumber = "230"
             landmarkName = "textFieldDidEndEditing(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -92,11 +92,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Rumpel/NewQuestionViewController.swift"
-            timestampString = "520812048.141541"
+            timestampString = "520852235.740196"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "223"
-            endingLineNumber = "223"
+            startingLineNumber = "235"
+            endingLineNumber = "235"
             landmarkName = "checkIfAllFieldAreLegit()"
             landmarkType = "7">
          </BreakpointContent>
@@ -104,129 +104,97 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Rumpel/AppDelegate.swift"
+            timestampString = "520853569.401428"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
+            landmarkName = "application(_:didFinishLaunchingWithOptions:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Rumpel/QuestionsPoolViewModel.swift"
-            timestampString = "520810514.916112"
+            filePath = "Rumpel/FirebaseManager.swift"
+            timestampString = "520851771.433355"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "22"
-            endingLineNumber = "22"
-            landmarkName = "init(withDelegate:)"
+            startingLineNumber = "161"
+            endingLineNumber = "161"
+            landmarkName = "updateUserToken(completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Rumpel/ChatViewController.swift"
+            timestampString = "520855443.449402"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "157"
+            endingLineNumber = "157"
+            landmarkName = "addQuestionToConversation(question:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Rumpel/PushNotificationsManager.swift"
+            timestampString = "520853066.293827"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "26"
+            endingLineNumber = "26"
+            landmarkName = "sendPush(to:completion:)"
             landmarkType = "7">
             <Locations>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "Rumpel.QuestionsPoolViewModel.init (withDelegate : Rumpel.QuestionPoolDataProtocol) -&gt; Rumpel.QuestionsPoolViewModel"
+                  symbolName = "Rumpel.PushNotificationsManager.sendPush (to : Rumpel.PushNotificaionObject, completion : (Swift.Bool) -&gt; ()) -&gt; ()"
                   moduleName = "Rumpel"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/harelavikasis/Desktop/iOS/Rumpel/Rumpel/Rumpel/QuestionsPoolViewModel.swift"
-                  timestampString = "520810858.592749"
+                  urlString = "file:///Users/harelavikasis/Desktop/iOS/Rumpel/Rumpel/Rumpel/PushNotificationsManager.swift"
+                  timestampString = "520854441.916433"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "22"
-                  endingLineNumber = "22"
-                  offsetFromSymbolStart = "152">
+                  startingLineNumber = "26"
+                  endingLineNumber = "26"
+                  offsetFromSymbolStart = "340">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "Rumpel.QuestionsPoolViewModel.(init (withDelegate : Rumpel.QuestionPoolDataProtocol) -&gt; Rumpel.QuestionsPoolViewModel).(closure #1)"
+                  symbolName = "Rumpel.PushNotificationsManager.(sendPush (to : Rumpel.PushNotificaionObject, completion : (Swift.Bool) -&gt; ()) -&gt; ()).(closure #1)"
                   moduleName = "Rumpel"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/harelavikasis/Desktop/iOS/Rumpel/Rumpel/Rumpel/QuestionsPoolViewModel.swift"
-                  timestampString = "520810858.594776"
+                  urlString = "file:///Users/harelavikasis/Desktop/iOS/Rumpel/Rumpel/Rumpel/PushNotificationsManager.swift"
+                  timestampString = "520854441.917869"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "23"
-                  endingLineNumber = "23"
-                  offsetFromSymbolStart = "20">
+                  startingLineNumber = "27"
+                  endingLineNumber = "27"
+                  offsetFromSymbolStart = "28">
                </Location>
             </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Rumpel/QuestionsPoolViewModel.swift"
-            timestampString = "520810518.495836"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "24"
-            endingLineNumber = "24"
-            landmarkName = "init(withDelegate:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Rumpel/QuestionsPoolViewController.swift"
-            timestampString = "520812310.842871"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "37"
-            endingLineNumber = "37"
-            landmarkName = "finishLoadData()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Rumpel/QuestionsPoolViewController.swift"
-            timestampString = "520812310.842871"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "52"
-            endingLineNumber = "52"
-            landmarkName = "numberOfComponents(in:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Rumpel/QuestionsPoolViewController.swift"
-            timestampString = "520812310.842871"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "57"
-            endingLineNumber = "57"
-            landmarkName = "pickerView(_:numberOfRowsInComponent:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Rumpel/QuestionsPoolViewController.swift"
-            timestampString = "520812310.842871"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "68"
-            endingLineNumber = "68"
-            landmarkName = "pickerView(_:titleForRow:forComponent:)"
-            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

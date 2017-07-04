@@ -103,6 +103,22 @@ class FirebaseManager
         self.ref.updateChildValues(chat.getObjectAsDictionary())
     }
     
+    func fetchContactToken(withContactId id:String,completion:@escaping (( _ tokenId:String?)->Void))
+    {
+        self.ref = Database.database().reference().child("users").child(id)
+        
+        ref.observeSingleEvent(of: .value, with: {(snapshot) in
+            var tokenId : String? = nil
+            if let dict = snapshot.value as? [String: Any] {//Exisiting user just update local image if needed
+                tokenId = dict["userToken"] as? String
+                completion(tokenId)
+            }
+        })
+        {(error) in
+            completion(nil)
+        }
+    }
+    
     func createUser(completion:@escaping (_ userSnapshot:DataSnapshot?,_ error: Error?)->Void)
     {
         guard let fbId = UserManager.manager.facebookId else {
@@ -138,6 +154,26 @@ class FirebaseManager
                 completion(nil,error)
             }
         }
+    }
+    
+    func updateUserToken(completion:@escaping (_ : Bool)->Void)
+    {
+        guard let fbId = UserManager.manager.facebookId else {
+            return
+        }
+        ref = Database.database().reference().child("users").child(fbId)
+        var userDict = [String: Any]()
+        userDict["userToken"] = UserManager.manager.userToken
+        self.ref.updateChildValues(userDict, withCompletionBlock: { (error, reference) in
+            if error != nil {
+                print ("error \(String(describing: error))")
+                completion(false)
+            }
+            else
+            {
+                completion(true)
+            }
+        })
     }
     
     func fetchAllQuestions(completion:@escaping (_ : [Question])->Void){

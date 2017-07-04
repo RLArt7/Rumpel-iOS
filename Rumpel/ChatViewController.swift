@@ -28,6 +28,7 @@ class ChatViewController: JSQMessagesViewController,AddNewQuestionProtocol {
     let theStoryboard = UIStoryboard(name: "Main", bundle: nil)
     
     var addQuestionVC : NewQuestionViewController!
+    var firstTime = true
     
     var chat : Chat?
     {
@@ -40,6 +41,7 @@ class ChatViewController: JSQMessagesViewController,AddNewQuestionProtocol {
         }
     }
     var endPointUserDisplayName: String!
+    var endPointFacebookId : String!
     var messages = [JSQMessage]()
     let defaults = UserDefaults.standard
     var incomingBubble: JSQMessagesBubbleImage!
@@ -93,8 +95,7 @@ class ChatViewController: JSQMessagesViewController,AddNewQuestionProtocol {
         {
             if (chat?.fetchOpenQuestoin()?.senderId != UserManager.manager.userId)
             {
-                let frame = CGRect(x:  self.collectionView.frame.origin.x, y: UIScreen.main.bounds.width, width: self.collectionView.frame.width, height: self.collectionView.frame.height - 134)
-                self.collectionView.frame = frame
+                self.collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 134, right: 0)
                 self.view.addSubview(answersView)
                 self.view.bringSubview(toFront: answersView)
                 if (chat?.isThereOpenQuestion)!
@@ -108,10 +109,15 @@ class ChatViewController: JSQMessagesViewController,AddNewQuestionProtocol {
         }
         else
         {
-            let frame = CGRect(x:  self.collectionView.frame.origin.x, y: UIScreen.main.bounds.width, width: self.collectionView.frame.width, height: UIScreen.main.bounds.height)
-            self.collectionView.frame = frame
+            if !firstTime
+            {
+                self.collectionView.contentInset = UIEdgeInsets(top: 64, left: 0, bottom: 10, right: 0)
+            }
+            
+
             setAddQuestionButton()
         }
+        firstTime = false
     }
     
     func answerSelected(sender: UIButton!)
@@ -143,7 +149,19 @@ class ChatViewController: JSQMessagesViewController,AddNewQuestionProtocol {
     {
         self.chat?.questions.append(question)
         self.chat?.isThereOpenQuestion = true
+        self.scrollToBottom(animated: true)
         FirebaseManager.manager.updateChat(withChat: chat!)
+        FirebaseManager.manager.fetchContactToken(withContactId: self.endPointFacebookId) { (tokenId) in
+            if let token = tokenId
+            {
+                let pushPayload = NotificationPayload(title: "Rumpel", userName: UserManager.manager.name!, body: "")
+                let pushObject = PushNotificaionObject(to: UserManager.manager.userToken!, notificationPayload: pushPayload)
+                PushNotificationsManager.manager.sendPush(to: pushObject, completion: { (bool) in
+                    print("Push was success? \(bool)")
+                })
+            }
+        }
+        
     }
     
 //MARK: JSQMessages CollectionView DataSource
