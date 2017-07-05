@@ -21,6 +21,7 @@
 		931F48231F09381C001A1CDD /* ChatViewController+Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931F48221F09381C001A1CDD /* ChatViewController+Buttons.swift */; };
 		931F48261F095E6E001A1CDD /* NewQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931F48251F095E6E001A1CDD /* NewQuestionViewController.swift */; };
 		931F482A1F09813C001A1CDD /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931F48291F09813C001A1CDD /* Extensions.swift */; };
+		935E7DE41F0D1C7300692328 /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935E7DE31F0D1C7300692328 /* FileManager.swift */; };
 		93CA4A651EFF9DEE00EFAB45 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93CA4A641EFF9DEE00EFAB45 /* AppDelegate.swift */; };
 		93CA4A671EFF9DEE00EFAB45 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93CA4A661EFF9DEE00EFAB45 /* LoginViewController.swift */; };
 		93CA4A6A1EFF9DEE00EFAB45 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 93CA4A681EFF9DEE00EFAB45 /* Main.storyboard */; };
@@ -55,6 +56,7 @@
 		931F48251F095E6E001A1CDD /* NewQuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewQuestionViewController.swift; sourceTree = "<group>"; };
 		931F48271F096428001A1CDD /* Rumpel-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Rumpel-Bridging-Header.h"; sourceTree = "<group>"; };
 		931F48291F09813C001A1CDD /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		935E7DE31F0D1C7300692328 /* FileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = "<group>"; };
 		93CA4A611EFF9DEE00EFAB45 /* Rumpel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Rumpel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		93CA4A641EFF9DEE00EFAB45 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		93CA4A661EFF9DEE00EFAB45 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -188,6 +190,7 @@
 				931F48191F04CF33001A1CDD /* UserManager.swift */,
 				931F481D1F04E0EA001A1CDD /* FirebaseManager.swift */,
 				9312151B1F0AD237005B71BE /* PushNotificationsManager.swift */,
+				935E7DE31F0D1C7300692328 /* FileManager.swift */,
 			);
 			name = Managers;
 			sourceTree = "<group>";
@@ -369,6 +372,7 @@
 				931F481C1F04D7D5001A1CDD /* ContactsViewModel.swift in Sources */,
 				93CA4A811EFFAD5700EFAB45 /* Question.swift in Sources */,
 				93CA4A831EFFB33300EFAB45 /* Chat.swift in Sources */,
+				935E7DE41F0D1C7300692328 /* FileManager.swift in Sources */,
 				93CA4A671EFF9DEE00EFAB45 /* LoginViewController.swift in Sources */,
 				93CA4A651EFF9DEE00EFAB45 /* AppDelegate.swift in Sources */,
 				9312151E1F0AE370005B71BE /* QuestionsPoolViewController.swift in Sources */,

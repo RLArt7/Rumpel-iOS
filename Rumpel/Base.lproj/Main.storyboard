@@ -87,7 +87,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2Ka-hY-nkR" id="WMD-YY-nvs">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="59.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile_icon" translatesAutoresizingMaskIntoConstraints="NO" id="TT2-Og-VVM">
@@ -104,7 +104,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
-                                            <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="backgroundColor" white="0.33333333333333331" alpha="0.80706870719178081" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstItem="TT2-Og-VVM" firstAttribute="centerY" secondItem="WMD-YY-nvs" secondAttribute="centerY" id="7m9-7o-FiL"/>
                                                 <constraint firstItem="9O1-c8-l5s" firstAttribute="leading" secondItem="TT2-Og-VVM" secondAttribute="trailing" constant="7.5" id="Ceb-Fa-2Jj"/>
@@ -175,30 +175,64 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chat Background" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ydM-eH-ZsJ">
+                                <rect key="frame" x="25" y="169" width="150.5" height="21"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cO7-kO-Ncs">
                                 <rect key="frame" x="285" y="83" width="51" height="31"/>
                                 <connections>
                                     <action selector="setNotificationsOnOff:" destination="AjK-K2-PLD" eventType="valueChanged" id="cbB-qM-adZ"/>
                                 </connections>
                             </switch>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultBackground" translatesAutoresizingMaskIntoConstraints="NO" id="9K0-71-Q6c">
+                                <rect key="frame" x="269" y="139" width="80" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="DSh-9D-dvC"/>
+                                    <constraint firstAttribute="width" secondItem="9K0-71-Q6c" secondAttribute="height" multiplier="1:1" id="Ogu-Lg-YjM"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bpV-oo-4mq">
+                                <rect key="frame" x="269" y="139" width="80" height="109"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="109" id="IoA-iU-aWZ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="edit">
+                                    <color key="titleColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="changeImageTpped:" destination="AjK-K2-PLD" eventType="touchUpInside" id="hgl-Fa-Kei"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="9K0-71-Q6c" firstAttribute="top" secondItem="cO7-kO-Ncs" secondAttribute="bottom" constant="25" id="AM6-DD-28o"/>
+                            <constraint firstItem="bpV-oo-4mq" firstAttribute="top" secondItem="9K0-71-Q6c" secondAttribute="top" id="BpP-gO-Zcl"/>
                             <constraint firstItem="cO7-kO-Ncs" firstAttribute="centerY" secondItem="UUz-dD-6n1" secondAttribute="centerY" id="F6f-0y-k4S"/>
+                            <constraint firstItem="bpV-oo-4mq" firstAttribute="width" secondItem="9K0-71-Q6c" secondAttribute="width" id="FKc-wg-kgL"/>
+                            <constraint firstItem="bpV-oo-4mq" firstAttribute="centerX" secondItem="9K0-71-Q6c" secondAttribute="centerX" id="IOV-Vo-0Ek"/>
                             <constraint firstItem="UtB-Bg-bes" firstAttribute="top" secondItem="cRu-eW-cH4" secondAttribute="bottom" constant="20" id="KPO-Sj-LSm"/>
+                            <constraint firstItem="ydM-eH-ZsJ" firstAttribute="top" secondItem="UUz-dD-6n1" secondAttribute="bottom" constant="60" id="PO0-dC-xhq"/>
                             <constraint firstItem="UUz-dD-6n1" firstAttribute="top" secondItem="dR9-AL-KBl" secondAttribute="bottom" constant="24" id="VvC-fV-VUV"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="9K0-71-Q6c" secondAttribute="trailing" constant="10" id="YhA-Xd-hLs"/>
                             <constraint firstItem="cRu-eW-cH4" firstAttribute="centerX" secondItem="f0E-vm-Lp2" secondAttribute="centerX" id="cUO-dA-Boa"/>
                             <constraint firstItem="UUz-dD-6n1" firstAttribute="leading" secondItem="f0E-vm-Lp2" secondAttribute="leading" constant="25" id="fAb-Xo-Iqq"/>
                             <constraint firstAttribute="trailingMargin" secondItem="cO7-kO-Ncs" secondAttribute="trailing" constant="25" id="gB4-Ph-Rgb"/>
+                            <constraint firstItem="ydM-eH-ZsJ" firstAttribute="leading" secondItem="f0E-vm-Lp2" secondAttribute="leadingMargin" constant="9" id="zze-1h-Zvv"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="imageView" destination="9K0-71-Q6c" id="SDS-ok-8jM"/>
                         <outlet property="notificationSwitch" destination="cO7-kO-Ncs" id="RpM-FI-c4f"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UpW-BM-5s4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2670" y="-370"/>
+            <point key="canvasLocation" x="2669.5999999999999" y="-370.16491754122939"/>
         </scene>
         <!--Chat View Controller-->
         <scene sceneID="Es7-ff-rOv">
@@ -520,6 +554,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="defaultBackground" width="512" height="512"/>
         <image name="facebook_button" width="154" height="26"/>
         <image name="login_background" width="400" height="301"/>
         <image name="logout" width="75" height="75"/>

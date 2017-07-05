@@ -52,5 +52,7 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Allow Rumpel to Access your photo lybrary</string>
 </dict>
 </plist>

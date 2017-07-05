@@ -55,7 +55,7 @@ class ChatViewController: JSQMessagesViewController,AddNewQuestionProtocol {
         self.view.backgroundColor = UIColor.clear
         self.collectionView.backgroundColor = UIColor.clear
         
-        let imView = UIImageView(image: #imageLiteral(resourceName: "defaultBackground"))
+        let imView = UIImageView(image: RumpelFileManager.manager.loadImgae() ?? #imageLiteral(resourceName: "defaultBackground"))
         imView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
         imView.contentMode = .scaleAspectFill
         imView.clipsToBounds = true
