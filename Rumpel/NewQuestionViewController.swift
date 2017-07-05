@@ -48,7 +48,6 @@ class NewQuestionViewController: UIViewController ,UITextFieldDelegate ,SelectQu
         self.group = BEMCheckBoxGroup(checkBoxes: [self.answer1CheckBox,self.answer2CheckBox,self.answer3CheckBox,self.answer4CheckBox])
         self.group.selectedCheckBox = self.answer1CheckBox
         self.group.mustHaveSelection = true
-        // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {

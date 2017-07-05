@@ -22,7 +22,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     let gcmMessageIDKey = "gcm.message_id"
-    
+    var sleepDate : TimeInterval?
+
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
@@ -78,14 +79,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         return handled
     }
+    
+    func checkFor5MinInBackground()
+    {
+        let timeToRefresh = 3600
+        
+        if (Date.timeIntervalSinceReferenceDate - self.sleepDate!) > TimeInterval(timeToRefresh)
+        {
+            forceAppRefresh()
+        }
+    }
+    
+    func forceAppRefresh()
+    {
+        if let vc = window?.rootViewController as? UINavigationController
+        {
+            vc.popToRootViewController(animated: false)
+        }
+    }
 
     func applicationWillResignActive(_ application: UIApplication) {
+        self.sleepDate = Date.timeIntervalSinceReferenceDate
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
+        checkFor5MinInBackground()
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
