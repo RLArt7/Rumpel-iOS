@@ -51,13 +51,13 @@ class LoginManager: NSObject {
                                     {
                                         print("error saving the user")
                                     }
+                                    completionBlock(true, false)
                                 })
                                 FBSDKGraphRequest(graphPath: "me/friends", parameters: ["fields" : "name,email,picture.width(512).height(512)"]).start(completionHandler: { (connection, resultObj, error) in
                                     if let data = (((resultObj as? [String: Any])?["data"])) as? [[String:Any]]
                                     {
                                         ContactsManager.manager.fetchContacts(withDict: data)
                                     }
-                                    completionBlock(true, false)
                                 })
                                 
                             }

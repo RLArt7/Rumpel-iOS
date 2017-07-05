@@ -62,16 +62,21 @@ extension ContactsViewController : UITableViewDelegate,UITableViewDataSource
         let theStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let chatVC = theStoryboard.instantiateViewController(withIdentifier :"ChatViewController") as! ChatViewController
 
-        FirebaseManager.manager.fetchUserConversation(withchatId: UserManager.manager.chatsIdMap[(viewModel.getContactForIndex(index: indexPath.row)?.id)!]!, endPoint: (viewModel.getContactForIndex(index: indexPath.row)?.id)!) { (Bool,chat) in
-            chatVC.chat = chat
-            chatVC.contact = self.viewModel.getContactForIndex(index: indexPath.row)
-            if !self.isAlraedyShow
-            {
-                self.navigationController?.pushViewController(chatVC, animated: true)
-                self.isAlraedyShow = true
+        if let contact = viewModel.getContactForIndex(index: indexPath.row)
+        {
+            let chatId = UserManager.manager.chatsIdMap[contact.id]
+            FirebaseManager.manager.fetchUserConversation(withchatId: chatId, endPoint: contact.id) { (Bool,chat) in
+                chatVC.chat = chat
+                chatVC.contact = self.viewModel.getContactForIndex(index: indexPath.row)
+                if !self.isAlraedyShow
+                {
+                    self.navigationController?.pushViewController(chatVC, animated: true)
+                    self.isAlraedyShow = true
+                }
+                
             }
-
         }
+        
     }
     
 }

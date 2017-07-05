@@ -27,7 +27,10 @@ class FirebaseManager
         ref = Database.database().reference().child("users").child(fbId).child("chatIdMap")
         
         ref.observe(.value, with: { (snapshot) in
-            if !snapshot.exists() { return }
+            if !snapshot.exists() {
+                completion(false)
+                return
+            }
             
             
             if snapshot.children.allObjects.count > 0{
@@ -79,6 +82,16 @@ class FirebaseManager
                     
                     self.ref.child("chatIdMap").updateChildValues([UserManager.manager.facebookId!:chat.id])
                 }
+                self.ref = Database.database().reference().child("chats").child(key)
+                
+                self.ref.observe(.value, with: { (snapshot) in
+                    if !snapshot.exists() {
+                        completion(false,nil)
+                        return
+                    }
+                    let chat = Chat(snapshot: snapshot)
+                    completion(true,chat)
+                })
             })
             completion(true,chat)
         }
@@ -129,7 +142,6 @@ class FirebaseManager
             return
         }
         ref = Database.database().reference().child("users").child(fbId)
-
         if LoginManager.manager.currnetUser() != nil
         {
             ref.observeSingleEvent(of: .value, with: {(snapshot) in
@@ -148,7 +160,10 @@ class FirebaseManager
                         print ("error \(String(describing: error))")
                         completion(nil,error)
                     }
-                    
+                    else
+                    {
+                        completion(nil,nil)
+                    }
                     self.ref.observeSingleEvent(of: .value, with: {(snapshot) in
                         completion(snapshot,nil)
                     })
