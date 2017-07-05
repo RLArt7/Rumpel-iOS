@@ -27,28 +27,34 @@ class ContactsViewModel
     func fetchContacts(completionBlock:@escaping ((_ success:Bool)->Void))
     {
         let cerdential = FacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
-        FBSDKGraphRequest(graphPath: "me/friends", parameters: ["fields" : "name,email,picture.width(512).height(512)"]).start(completionHandler: { (connection, resultObj, error) in
+        FBSDKGraphRequest(graphPath: "me", parameters: ["fields" : "name,email,picture.width(512).height(512)"]).start(completionHandler: { (connection, resultObj, error) in
             Auth.auth().signIn(with: cerdential, completion: { (user, error) in
                 if error != nil{
                     completionBlock(false)
                 }else{
                     
                     //let name = (resultObj as? [String: Any])?["name"] as? String
-                    if let data = (((resultObj as? [String: Any])?["data"])) as? [[String:Any]]
+                    if let url = ((((resultObj as? [String:Any])?["picture"]) as? [String:Any])?["data"] as? [String:Any])?["url"] as? String
                     {
-                        ContactsManager.manager.fetchContacts(withDict: data)
+                         UserManager.manager.userPhotoUrl = url
                     }
-                    UserManager.manager.userPhotoUrl = user?.photoURL
                     FirebaseManager.manager.createUser(completion: { (data, error) in
                         if error != nil
                         {
                             print("error saving the user")
                         }
                     })
-                    completionBlock(true)
+                    FBSDKGraphRequest(graphPath: "me/friends", parameters: ["fields" : "name,email,picture.width(512).height(512)"]).start(completionHandler: { (connection, resultObj, error) in
+                        if let data = (((resultObj as? [String: Any])?["data"])) as? [[String:Any]]
+                        {
+                            ContactsManager.manager.fetchContacts(withDict: data)
+                        }
+                        completionBlock(true)
+                    })
                 }
             })
         })
+        
 
     }
     

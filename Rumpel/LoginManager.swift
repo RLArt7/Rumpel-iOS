@@ -35,26 +35,31 @@ class LoginManager: NSObject {
                 }else{
                     needShowLoaderBlock()
                     let cerdential =   FacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
-                    FBSDKGraphRequest(graphPath: "me/friends", parameters: ["fields" : "name,email,picture.width(512).height(512)"]).start(completionHandler: { (connection, resultObj, error) in
+                    FBSDKGraphRequest(graphPath: "me", parameters: ["fields" : "name,email,picture.width(512).height(512)"]).start(completionHandler: { (connection, resultObj, error) in
                         Auth.auth().signIn(with: cerdential, completion: { (user, error) in
                             if error != nil{
                                 completionBlock(false, false)
                             }else{
-                                
-                                //let name = (resultObj as? [String: Any])?["name"] as? String
-                                if let data = (((resultObj as? [String: Any])?["data"])) as? [[String:Any]]
-                                {
-                                    ContactsManager.manager.fetchContacts(withDict: data)
-                                }
                                 UserManager.manager.setUser(withName: user?.displayName ?? "", userToken: user?.refreshToken ?? "", facebookId: FBSDKAccessToken.current().userID ?? "", userId: user?.uid ?? "")
-                                UserManager.manager.userPhotoUrl = user?.photoURL
+                                
+                                if let url = ((((resultObj as? [String:Any])?["picture"]) as? [String:Any])?["data"] as? [String:Any])?["url"] as? String
+                                {
+                                    UserManager.manager.userPhotoUrl = url
+                                }
                                 FirebaseManager.manager.createUser(completion: { (data, error) in
                                     if error != nil
                                     {
                                         print("error saving the user")
                                     }
                                 })
-                                completionBlock(true, false)
+                                FBSDKGraphRequest(graphPath: "me/friends", parameters: ["fields" : "name,email,picture.width(512).height(512)"]).start(completionHandler: { (connection, resultObj, error) in
+                                    if let data = (((resultObj as? [String: Any])?["data"])) as? [[String:Any]]
+                                    {
+                                        ContactsManager.manager.fetchContacts(withDict: data)
+                                    }
+                                    completionBlock(true, false)
+                                })
+                                
                             }
                         })
                     })

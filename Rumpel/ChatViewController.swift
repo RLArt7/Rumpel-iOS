@@ -52,11 +52,20 @@ class ChatViewController: JSQMessagesViewController,AddNewQuestionProtocol {
 //  MARK: Override Functions
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.backgroundColor = UIColor.clear
+        self.collectionView.backgroundColor = UIColor.clear
         
+        let imView = UIImageView(image: #imageLiteral(resourceName: "defaultBackground"))
+        imView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+        imView.contentMode = .scaleAspectFill
+        imView.clipsToBounds = true
+        self.view.insertSubview(imView, at: 0)
         if let url = URL(string: contact.imageUrl) {
             UIImageView.setImage(imageView: contactImage, url: url, placeholder: nil)
         }
-        UIImageView.setImage(imageView: userImage, url: UserManager.manager.userPhotoUrl!, placeholder: nil)
+        if let url = URL(string: UserManager.manager.userPhotoUrl) {
+            UIImageView.setImage(imageView: userImage, url: url, placeholder: nil)
+        }
         
         addQuestionVC = self.theStoryboard.instantiateViewController(withIdentifier :"NewQuestionViewController") as! NewQuestionViewController
         addQuestionVC.modalPresentationStyle = .overFullScreen
@@ -104,7 +113,7 @@ class ChatViewController: JSQMessagesViewController,AddNewQuestionProtocol {
         {
             if (chat?.fetchOpenQuestoin()?.senderId != UserManager.manager.userId)
             {
-                self.collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 134, right: 0)
+                self.collectionView.contentInset = UIEdgeInsets(top: 64, left: 0, bottom: 134, right: 0)
                 self.view.addSubview(answersView)
                 self.view.bringSubview(toFront: answersView)
                 if (chat?.isThereOpenQuestion)!
@@ -307,7 +316,7 @@ class ChatViewController: JSQMessagesViewController,AddNewQuestionProtocol {
         }
         else
         {
-            if (UserManager.manager.userPhotoUrl == nil || userImage.image == nil)
+            if (UserManager.manager.userPhotoUrl == "" || userImage.image == nil)
             {
                 return JSQMessagesAvatarImageFactory.avatarImage(withUserInitials: self.getUserInitials(withUserName: UserManager.manager.name!), backgroundColor: UIColor.jsq_messageBubbleGreen(), textColor:  UIColor.white, font:  UIFont.systemFont(ofSize: 12), diameter: 25)
             }
