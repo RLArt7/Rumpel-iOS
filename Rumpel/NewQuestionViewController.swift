@@ -81,7 +81,7 @@ class NewQuestionViewController: UIViewController ,UITextFieldDelegate ,SelectQu
         {
             let question = Question()
             question.questionText = questionTextField.text!
-            question.initialTime = Int(Date().timeIntervalSince1970)
+            question.initialTime = 0
             question.timeToAnswer = 0
             question.isRightAnswer = false
             question.isQuestionOpen = true
@@ -93,8 +93,9 @@ class NewQuestionViewController: UIViewController ,UITextFieldDelegate ,SelectQu
             FirebaseManager.manager.addNewQuestion(withQuestion: question) { (questionId) in
                 question.senderId = UserManager.manager.userId!
                 question.id = questionId!
-                self.close(cleanFileds: true)
+                question.initialTime = Int(Date().timeIntervalSince1970)
                 self.delegate?.addQuestionToConversation(question: question)
+                self.close(cleanFileds: true)
             }
         }
         else
@@ -105,6 +106,7 @@ class NewQuestionViewController: UIViewController ,UITextFieldDelegate ,SelectQu
             let ans3 = Answer(answerText: ans3TextField.text!, isRight: answer3CheckBox.on)
             let ans4 = Answer(answerText: ans4TextField.text!, isRight: answer4CheckBox.on)
             questionFromPool?.answers = [ans1,ans2,ans3,ans4]
+            questionFromPool?.initialTime = Int(Date().timeIntervalSince1970)
             questionFromPool?.senderId = UserManager.manager.userId!
             questionFromPool?.isQuestionOpen = true
             self.delegate?.addQuestionToConversation(question: questionFromPool!)

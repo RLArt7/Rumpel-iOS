@@ -96,7 +96,8 @@ class ChatViewController: JSQMessagesViewController,AddNewQuestionProtocol {
         addAnswerButton.removeFromSuperview()
         
         chat?.questions.forEach({ (question) in
-            messages.append(JSQMessage(senderId: question.senderId, displayName: question.senderId == self.senderId ? self.senderDisplayName : contact.name, text: question.getMessageTextForQuestion()))
+            let message = JSQMessage(senderId: question.senderId, senderDisplayName: question.senderId == self.senderId ? self.senderDisplayName : contact.name, date: Date(timeIntervalSince1970: TimeInterval(question.initialTime)), text:  question.getMessageTextForQuestion())
+            messages.append(message!)
         })
         
         if (chat?.isThereOpenQuestion)!
@@ -133,7 +134,7 @@ class ChatViewController: JSQMessagesViewController,AddNewQuestionProtocol {
         _ = chat?.fetchOpenQuestoin()?.checkAnswer(withAnswerIndex: sender.tag)
         messages.removeAll()
         chat?.questions.forEach({ (question) in
-            messages.append(JSQMessage(senderId: question.senderId, displayName: question.senderId == self.senderId ? self.senderDisplayName : contact.name, text: question.getMessageTextForQuestion()))
+            messages.append(JSQMessage(senderId: question.senderId, senderDisplayName: question.senderId == self.senderId ? self.senderDisplayName : contact.name, date: Date(timeIntervalSince1970: TimeInterval(question.initialTime)), text:  question.getMessageTextForQuestion()))
         })
         chat?.isThereOpenQuestion = false
         self.updatChatInFirebase()
@@ -216,15 +217,15 @@ class ChatViewController: JSQMessagesViewController,AddNewQuestionProtocol {
          *  Example on showing or removing senderDisplayName based on user settings.
          *  This logic should be consistent with what you return from `heightForCellTopLabelAtIndexPath:`
          */
-        if defaults.bool(forKey: Setting.removeSenderDisplayName.rawValue) {
-            return nil
-        }
+//        if defaults.bool(forKey: Setting.removeSenderDisplayName.rawValue) {
+//            return nil
+//        }
+//        
+//        if message.senderId == self.senderId {
+//            return NSAttributedString(string: senderDisplayName)
+//        }
         
-        if message.senderId == self.senderId {
-            return nil
-        }
-        
-        return NSAttributedString(string: message.senderDisplayName)
+        return nil //NSAttributedString(string: message.senderDisplayName)
     }
     
     override func collectionView(_ collectionView: JSQMessagesCollectionView, layout collectionViewLayout: JSQMessagesCollectionViewFlowLayout, heightForCellTopLabelAt indexPath: IndexPath) -> CGFloat {
