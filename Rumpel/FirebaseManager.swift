@@ -13,7 +13,7 @@ import FirebaseDatabase
 class FirebaseManager
 {
     static let manager = FirebaseManager()
-    var ref: DatabaseReference!
+//    var ref: DatabaseReference!
     
     func fetchUserChatHistoryMap(completion:@escaping ((_ success:Bool)->Void))
     {
@@ -24,7 +24,7 @@ class FirebaseManager
         {
             return
         }
-        ref = Database.database().reference().child("users").child(fbId).child("chatIdMap")
+        let ref = Database.database().reference().child("users").child(fbId).child("chatIdMap")
         
         ref.observe(.value, with: { (snapshot) in
             if !snapshot.exists() {
@@ -47,7 +47,7 @@ class FirebaseManager
     
     func fetchUserConversation(withchatId chatId:String? , endPoint: String ,completion:@escaping ((_ success:Bool, _ chat:Chat?)->Void))
     {
-        
+        var ref: DatabaseReference!
         if let chatId = chatId
         {
             ref = Database.database().reference().child("chats").child(chatId)
@@ -64,27 +64,27 @@ class FirebaseManager
         else
         {
             let key = Database.database().reference().child("chats").childByAutoId().key
-            self.ref = Database.database().reference().child("chats").child(key)
+            ref = Database.database().reference().child("chats").child(key)
             let chat = Chat(withChatId: key, endPoint: endPoint)
             let chatDict = chat.getObjectAsDictionary()
             
-            self.ref.updateChildValues(chatDict, withCompletionBlock: { (error, reference) in
+            ref.updateChildValues(chatDict, withCompletionBlock: { (error, reference) in
                 if error != nil {
                     print ("error \(String(describing: error))")
                 }
                 else
                 {
-                    self.ref = Database.database().reference().child("users").child(UserManager.manager.facebookId!)
+                    ref = Database.database().reference().child("users").child(UserManager.manager.facebookId!)
                     
-                    self.ref.child("chatIdMap").updateChildValues([endPoint:chat.id])
+                    ref.child("chatIdMap").updateChildValues([endPoint:chat.id])
                     
-                    self.ref = Database.database().reference().child("users").child(endPoint)
+                    ref = Database.database().reference().child("users").child(endPoint)
                     
-                    self.ref.child("chatIdMap").updateChildValues([UserManager.manager.facebookId!:chat.id])
+                    ref.child("chatIdMap").updateChildValues([UserManager.manager.facebookId!:chat.id])
                 }
-                self.ref = Database.database().reference().child("chats").child(key)
+                ref = Database.database().reference().child("chats").child(key)
                 
-                self.ref.observe(.value, with: { (snapshot) in
+                ref.observe(.value, with: { (snapshot) in
                     if !snapshot.exists() {
                         completion(false,nil)
                         return
@@ -100,9 +100,9 @@ class FirebaseManager
     func addNewQuestion(withQuestion question:Question,completion:@escaping (( _ questionId:String?)->Void))
     {
         let key = Database.database().reference().child("questions").childByAutoId().key
-        self.ref = Database.database().reference().child("questions").child(key)
+        let ref = Database.database().reference().child("questions").child(key)
         
-        self.ref.updateChildValues(question.getObjectAsDictionary(), withCompletionBlock: { (error, reference) in
+        ref.updateChildValues(question.getObjectAsDictionary(), withCompletionBlock: { (error, reference) in
             if error != nil {
                 print ("error \(String(describing: error))")
             }
@@ -115,14 +115,14 @@ class FirebaseManager
     
     func updateChat(withChat chat:Chat)
     {
-        self.ref = Database.database().reference().child("chats").child(chat.id)
+        let ref = Database.database().reference().child("chats").child(chat.id)
     
-        self.ref.updateChildValues(chat.getObjectAsDictionary())
+        ref.updateChildValues(chat.getObjectAsDictionary())
     }
     
     func fetchContactToken(withContactId id:String,completion:@escaping (( _ tokenId:String?)->Void))
     {
-        self.ref = Database.database().reference().child("users").child(id)
+        let ref = Database.database().reference().child("users").child(id)
         
         ref.observeSingleEvent(of: .value, with: {(snapshot) in
             var tokenId : String? = nil
@@ -141,7 +141,7 @@ class FirebaseManager
         guard let fbId = UserManager.manager.facebookId else {
             return
         }
-        ref = Database.database().reference().child("users").child(fbId)
+        let ref = Database.database().reference().child("users").child(fbId)
         if LoginManager.manager.currnetUser() != nil
         {
             ref.observeSingleEvent(of: .value, with: {(snapshot) in
@@ -155,7 +155,7 @@ class FirebaseManager
                     userDict["userToken"] = UserManager.manager.userToken ?? ""
                 }
                 
-                self.ref.updateChildValues(userDict, withCompletionBlock: { (error, reference) in
+                ref.updateChildValues(userDict, withCompletionBlock: { (error, reference) in
                     if error != nil {
                         print ("error \(String(describing: error))")
                         completion(nil,error)
@@ -164,7 +164,7 @@ class FirebaseManager
                     {
                         completion(nil,nil)
                     }
-                    self.ref.observeSingleEvent(of: .value, with: {(snapshot) in
+                    ref.observeSingleEvent(of: .value, with: {(snapshot) in
                         completion(snapshot,nil)
                     })
                 })
@@ -184,10 +184,10 @@ class FirebaseManager
         {
             return
         }
-        ref = Database.database().reference().child("users").child(fbId)
+        let ref = Database.database().reference().child("users").child(fbId)
         var userDict = [String: Any]()
         userDict["userToken"] = UserManager.manager.userToken
-        self.ref.updateChildValues(userDict, withCompletionBlock: { (error, reference) in
+        ref.updateChildValues(userDict, withCompletionBlock: { (error, reference) in
             if error != nil {
                 print ("error \(String(describing: error))")
                 completion(false)
@@ -201,7 +201,7 @@ class FirebaseManager
     
     func fetchAllQuestions(completion:@escaping (_ : [Question])->Void){
         var questions = [Question]()
-        ref = Database.database().reference().child("questions")/*.queryLimited(toFirst: 100)*/
+        let ref = Database.database().reference().child("questions")/*.queryLimited(toFirst: 100)*/
         ref.observeSingleEvent(of: .value, with: { (snapshot) in
             for snap in snapshot.children.allObjects{
                 if let snapObje = snap as? DataSnapshot

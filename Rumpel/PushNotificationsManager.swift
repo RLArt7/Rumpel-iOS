@@ -37,7 +37,7 @@ class PushNotificationsManager
 struct NotificationPayload {
     var title : String = ""
     var userName: String = ""
-    var body : String?
+    var body : String = ""
 //    var action: PushActions?
     
     func getParams() -> [String : Any] {
@@ -45,7 +45,7 @@ struct NotificationPayload {
         dict["title"] = self.title
         dict["sound"] = "default"
         dict["badge"] = "1"
-        dict["body"] = userName + " Just Send You A Riddle"
+        dict["body"] = body
 //        if let action = self.action{
 //            switch action {
 //            case .friendRequest:

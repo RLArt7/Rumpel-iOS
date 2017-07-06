@@ -172,7 +172,8 @@ class ChatViewController: JSQMessagesViewController,AddNewQuestionProtocol {
         FirebaseManager.manager.fetchContactToken(withContactId: self.contact.id) { (tokenId) in
             if let token = tokenId
             {
-                let pushPayload = NotificationPayload(title: "Rumpel", userName: UserManager.manager.name!, body: "")
+                let title = "\(UserManager.manager.name!) Asked"
+                let pushPayload = NotificationPayload(title: title, userName: UserManager.manager.name!, body: "\(question.questionText)")
                 let pushObject = PushNotificaionObject(to: token, notificationPayload: pushPayload)
                 PushNotificationsManager.manager.sendPush(to: pushObject, completion: { (bool) in
                     print("Push was success? \(bool)")
@@ -209,14 +210,16 @@ class ChatViewController: JSQMessagesViewController,AddNewQuestionProtocol {
          *  Show a timestamp for every 3rd message
          */
         if (indexPath.item % 3 == 0) {
-            let message = self.messages[indexPath.item]
-            
-            return JSQMessagesTimestampFormatter.shared().attributedTimestamp(for: message.date)
+            let message = messages[indexPath.item]
+            let range = (JSQMessagesTimestampFormatter.shared().time(for: message.date) as NSString).range(of: JSQMessagesTimestampFormatter.shared().time(for: message.date))
+            let str = NSMutableAttributedString(string: JSQMessagesTimestampFormatter.shared().time(for: message.date))
+            str.addAttribute(NSForegroundColorAttributeName, value: UIColor.white , range: range)
+            return str
         }
         
         return nil
     }
-    
+
     override func collectionView(_ collectionView: JSQMessagesCollectionView, attributedTextForMessageBubbleTopLabelAt indexPath: IndexPath) -> NSAttributedString? {
         let message = messages[indexPath.item]
         

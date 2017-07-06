@@ -106,7 +106,34 @@ class Question
         }
         else
         {
-            returnStr += self.isRightAnswer ? "✅" : "❌"
+            let firstLetter = "\(self.questionText.characters.first!)"
+            if firstLetter.language() == "he"
+            {
+                if senderId == UserManager.manager.userId!
+                {
+                    returnStr += self.isRightAnswer ? "✅" : "❌"
+
+                }
+                else
+                {
+                    var str = self.isRightAnswer ? "✅" : "❌"
+                    str += returnStr
+                    returnStr = str
+                }
+            }
+            else
+            {
+                if senderId == UserManager.manager.userId
+                {
+                    var str = self.isRightAnswer ? "✅" : "❌"
+                    str += returnStr
+                    returnStr = str
+                }
+                else
+                {
+                    returnStr += self.isRightAnswer ? "✅" : "❌"
+                }
+            }
             returnStr += "\n  --\(answer != nil ? answer!.answerText :  getRightAnswer()!.answerText)--"
             return returnStr
         }

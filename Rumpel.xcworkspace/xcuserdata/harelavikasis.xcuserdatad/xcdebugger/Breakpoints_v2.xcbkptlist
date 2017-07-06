@@ -156,12 +156,12 @@
                   moduleName = "Rumpel"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/harelavikasis/Desktop/iOS/Rumpel/Rumpel/Rumpel/PushNotificationsManager.swift"
-                  timestampString = "520971637.07268"
+                  timestampString = "521069136.152931"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "26"
                   endingLineNumber = "26"
-                  offsetFromSymbolStart = "340">
+                  offsetFromSymbolStart = "324">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -171,7 +171,7 @@
                   moduleName = "Rumpel"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/harelavikasis/Desktop/iOS/Rumpel/Rumpel/Rumpel/PushNotificationsManager.swift"
-                  timestampString = "520971637.074093"
+                  timestampString = "521069136.154644"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "27"
@@ -194,22 +194,6 @@
             startingLineNumber = "169"
             endingLineNumber = "169"
             landmarkName = "tokenRefreshNotification(notification:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Rumpel/FirebaseManager.swift"
-            timestampString = "520970922.596003"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "51"
-            endingLineNumber = "51"
-            landmarkName = "fetchUserConversation(withchatId:endPoint:completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -252,7 +236,7 @@
                   moduleName = "Rumpel"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/harelavikasis/Desktop/iOS/Rumpel/Rumpel/Rumpel/SettingsViewController.swift"
-                  timestampString = "520971637.083406"
+                  timestampString = "521069136.160761"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "52"
@@ -267,7 +251,7 @@
                   moduleName = "Rumpel"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/harelavikasis/Desktop/iOS/Rumpel/Rumpel/Rumpel/SettingsViewController.swift"
-                  timestampString = "520971637.084948"
+                  timestampString = "521069136.162064"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "52"
@@ -332,7 +316,7 @@
                   moduleName = "Rumpel"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/harelavikasis/Desktop/iOS/Rumpel/Rumpel/Rumpel/FileManager.swift"
-                  timestampString = "520971637.093548"
+                  timestampString = "521069136.171475"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "23"
@@ -347,7 +331,7 @@
                   moduleName = "Rumpel"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/harelavikasis/Desktop/iOS/Rumpel/Rumpel/Rumpel/FileManager.swift"
-                  timestampString = "520971637.094946"
+                  timestampString = "521069136.172818"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "23"
@@ -380,11 +364,11 @@
                   moduleName = "Rumpel"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/harelavikasis/Desktop/iOS/Rumpel/Rumpel/Rumpel/FirebaseManager.swift"
-                  timestampString = "520971637.09812"
+                  timestampString = "521069136.176132"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "117"
-                  endingLineNumber = "117"
+                  startingLineNumber = "127"
+                  endingLineNumber = "127"
                   offsetFromSymbolStart = "404">
                </Location>
                <Location
@@ -395,11 +379,11 @@
                   moduleName = "Rumpel"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/harelavikasis/Desktop/iOS/Rumpel/Rumpel/Rumpel/FirebaseManager.swift"
-                  timestampString = "520971637.099432"
+                  timestampString = "521069136.177522"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "118"
-                  endingLineNumber = "118"
+                  startingLineNumber = "128"
+                  endingLineNumber = "128"
                   offsetFromSymbolStart = "40">
                </Location>
             </Locations>
@@ -443,22 +427,6 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Rumpel/FirebaseManager.swift"
-            timestampString = "520972535.358406"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "151"
-            endingLineNumber = "151"
-            landmarkName = "createUser(completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "Rumpel/LoginViewController.swift"
             timestampString = "520970689.355944"
             startingColumnNumber = "9223372036854775807"
@@ -472,16 +440,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Rumpel/FirebaseManager.swift"
-            timestampString = "520970922.596003"
+            filePath = "Rumpel/Question.swift"
+            timestampString = "521067698.352143"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "32"
-            endingLineNumber = "32"
-            landmarkName = "fetchUserChatHistoryMap(completion:)"
+            startingLineNumber = "112"
+            endingLineNumber = "112"
+            landmarkName = "getMessageTextForQuestion()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
