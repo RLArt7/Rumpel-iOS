@@ -13,6 +13,10 @@ import FirebaseDatabase
 class FirebaseManager
 {
     static let manager = FirebaseManager()
+    
+    var chatQuery : DatabaseQuery?
+    var obsrevesArray = [UInt]()
+
 //    var ref: DatabaseReference!
     
     func fetchUserChatHistoryMap(completion:@escaping ((_ success:Bool)->Void))
@@ -45,6 +49,13 @@ class FirebaseManager
         })
     }
     
+    func removeObsreves(){
+        obsrevesArray.forEach { (observe) in
+            self.chatQuery?.removeObserver(withHandle: observe)
+        }
+    }
+
+    
     func fetchUserConversation(withchatId chatId:String? , endPoint: String ,completion:@escaping ((_ success:Bool, _ chat:Chat?)->Void))
     {
         var ref: DatabaseReference!
@@ -52,7 +63,7 @@ class FirebaseManager
         {
             ref = Database.database().reference().child("chats").child(chatId)
             
-            ref.observe(.value, with: { (snapshot) in
+             let observe1 = ref.observe(.value, with: { (snapshot) in
                 if !snapshot.exists() {
                     completion(false,nil)
                     return
@@ -60,6 +71,8 @@ class FirebaseManager
                 let chat = Chat(snapshot: snapshot)
                 completion(true,chat)
             })
+            self.chatQuery = ref
+            self.obsrevesArray.append(observe1)
         }
         else
         {
@@ -67,7 +80,6 @@ class FirebaseManager
             ref = Database.database().reference().child("chats").child(key)
             let chat = Chat(withChatId: key, endPoint: endPoint)
             let chatDict = chat.getObjectAsDictionary()
-            
             ref.updateChildValues(chatDict, withCompletionBlock: { (error, reference) in
                 if error != nil {
                     print ("error \(String(describing: error))")
@@ -84,7 +96,7 @@ class FirebaseManager
                 }
                 ref = Database.database().reference().child("chats").child(key)
                 
-                ref.observe(.value, with: { (snapshot) in
+                let observe1 = ref.observe(.value, with: { (snapshot) in
                     if !snapshot.exists() {
                         completion(false,nil)
                         return
@@ -92,6 +104,8 @@ class FirebaseManager
                     let chat = Chat(snapshot: snapshot)
                     completion(true,chat)
                 })
+                self.chatQuery = ref
+                self.obsrevesArray.append(observe1)
             })
             completion(true,chat)
         }

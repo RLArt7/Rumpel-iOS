@@ -32,11 +32,17 @@ class ContactsViewController: UIViewController
                 self.activityIndicator.stopAnimating()
             })
         }
+        NotificationCenter.default.addObserver(self, selector: #selector(refreshTable), name: NSNotification.Name(rawValue: "newPushMessageArrive"), object: nil)
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tableView.reloadData()
         self.isAlraedyShow = false
+    }
+    
+    func refreshTable()
+    {
+        self.tableView.reloadSections([0], with: .top)
     }
 }
 
@@ -61,10 +67,11 @@ extension ContactsViewController : UITableViewDelegate,UITableViewDataSource
     {
         let theStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let chatVC = theStoryboard.instantiateViewController(withIdentifier :"ChatViewController") as! ChatViewController
-
         if let contact = viewModel.getContactForIndex(index: indexPath.row)
         {
             let chatId = UserManager.manager.chatsIdMap[contact.id]
+            UserDefaults.standard.removeObject(forKey: contact.id)
+            contact.hasNewQuestion = false
             FirebaseManager.manager.fetchUserConversation(withchatId: chatId, endPoint: contact.id) { (Bool,chat) in
                 chatVC.chat = chat
                 chatVC.contact = self.viewModel.getContactForIndex(index: indexPath.row)
@@ -72,6 +79,7 @@ extension ContactsViewController : UITableViewDelegate,UITableViewDataSource
                 {
                     self.navigationController?.pushViewController(chatVC, animated: true)
                     self.isAlraedyShow = true
+                    tableView.reloadRows(at: [indexPath], with: .none)
                 }
                 
             }

@@ -13,4 +13,6 @@ class Contact
     var name = ""
     var id = ""
     var imageUrl = ""
+    var hasNewQuestion = false
+    var lastChange : Date?
 }

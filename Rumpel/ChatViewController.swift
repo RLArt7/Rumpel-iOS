@@ -23,6 +23,10 @@ class ChatViewController: JSQMessagesViewController,AddNewQuestionProtocol {
     var answerTwoButton: UIButton = UIButton(frame: CGRect(x: UIScreen.main.bounds.width / 2, y: 0, width:  UIScreen.main.bounds.width / 2, height: 67))
     var answerThreeButton: UIButton = UIButton(frame: CGRect(x: 0, y: 67, width:  UIScreen.main.bounds.width / 2, height: 67))
     var answerFourButton: UIButton = UIButton(frame: CGRect(x: UIScreen.main.bounds.width / 2, y: 67, width:  UIScreen.main.bounds.width / 2, height: 67))
+    var answerBackgorund1 = UIView()
+    var answerBackgorund2 = UIView()
+    var answerBackgorund3 = UIView()
+    var answerBackgorund4 = UIView()
     
     var addAnswerButton: UIButton = UIButton(frame: CGRect(x: UIScreen.main.bounds.width - 75, y: UIScreen.main.bounds.height - 75, width:  50, height: 50))
 
@@ -97,6 +101,14 @@ class ChatViewController: JSQMessagesViewController,AddNewQuestionProtocol {
         super.viewDidAppear(animated)
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        FirebaseManager.manager.removeObsreves()
+        UserDefaults.standard.removeObject(forKey: self.contact.id)
+        self.contact.hasNewQuestion = false
+    }
+    
 //  MARK: Public Functions
     func setOutlets()
     {
@@ -150,6 +162,7 @@ class ChatViewController: JSQMessagesViewController,AddNewQuestionProtocol {
         setOutlets()
         self.collectionView?.reloadData()
         self.collectionView?.layoutIfNeeded()
+        ContactsManager.manager.updateContactNewMessageById(id: self.contact.id, withBadge: false)
     }
     
     func addQuestion(sender: UIButton!)
@@ -173,11 +186,12 @@ class ChatViewController: JSQMessagesViewController,AddNewQuestionProtocol {
             if let token = tokenId
             {
                 let title = "\(UserManager.manager.name!) Asked"
-                let pushPayload = NotificationPayload(title: title, userName: UserManager.manager.name!, body: "\(question.questionText)")
+                let pushPayload = NotificationPayload(title: title, userName: UserManager.manager.name!, body: "\(question.questionText)",data: UserManager.manager.facebookId ?? "")
                 let pushObject = PushNotificaionObject(to: token, notificationPayload: pushPayload)
                 PushNotificationsManager.manager.sendPush(to: pushObject, completion: { (bool) in
                     print("Push was success? \(bool)")
                 })
+                ContactsManager.manager.updateContactNewMessageById(id: self.contact.id, withBadge: false)
             }
         }
         

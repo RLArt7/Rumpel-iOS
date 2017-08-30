@@ -58,6 +58,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                                selector: #selector(self.tokenRefreshNotification(notification:)),
                                                name: NSNotification.Name.InstanceIDTokenRefresh,
                                                object: nil)
+        
+        if let userInfo = launchOptions?[UIApplicationLaunchOptionsKey.remoteNotification] as? NSDictionary {
+            if let senderId = userInfo["senderId"] as? String
+            {
+                if senderId != ""
+                {
+                    UserDefaults.standard.set(true, forKey: senderId)
+                    ContactsManager.manager.updateContactNewMessageById(id: senderId, withBadge: true)
+                }
+            }
+        }
         return true
     }
     
@@ -194,6 +205,15 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
                                 willPresent notification: UNNotification,
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         let userInfo = notification.request.content.userInfo
+        
+        if let senderId = userInfo["senderId"] as? String
+        {
+            if senderId != ""
+            {
+                UserDefaults.standard.set(true, forKey: senderId)
+                ContactsManager.manager.updateContactNewMessageById(id: senderId, withBadge: true)
+            }
+        }
         // Print message ID.
         if userInfo[gcmMessageIDKey] != nil {
             // print("Message ID: \(messageID)")

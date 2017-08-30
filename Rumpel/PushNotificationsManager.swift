@@ -38,6 +38,7 @@ struct NotificationPayload {
     var title : String = ""
     var userName: String = ""
     var body : String = ""
+    var data : String = ""
 //    var action: PushActions?
     
     func getParams() -> [String : Any] {
@@ -75,7 +76,7 @@ struct PushNotificaionObject {
         var dict = [String: Any]()
         dict["to"] = self.to
         dict["notification"] = self.notificationPayload?.getParams()
-        dict["data"] = ["Hello": "World"]
+        dict["data"] = ["senderId": self.notificationPayload?.data]
         
         return dict
     }

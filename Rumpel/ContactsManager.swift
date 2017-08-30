@@ -26,8 +26,30 @@ class ContactsManager
             {
                 contact.id = id
                 contact.name = name
+                contact.hasNewQuestion = UserDefaults.standard.bool(forKey: id)
+                contact.lastChange = UserDefaults.standard.object(forKey: "lastChange_\(id)") as? Date ?? Date(timeIntervalSinceReferenceDate: -123456789.0)
                 contacts.append(contact)
             }
         }
+        contacts.sort{$0.lastChange! > $1.lastChange!}
+    }
+    
+    func updateContactNewMessageById(id:String , withBadge : Bool)
+    {
+        contacts.forEach { (contact) in
+            if contact.id == id
+            {
+                if withBadge
+                {
+                    contact.hasNewQuestion = true
+                }
+                let date = Date()
+                contact.lastChange = date
+                UserDefaults.standard.set(date, forKey: "lastChange_\(id)")
+            }
+        }
+        contacts.sort{$0.lastChange! > $1.lastChange!}
+//        contacts.sort{$0.hasNewQuestion && !$1.hasNewQuestion}
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "newPushMessageArrive"), object: nil)
     }
 }

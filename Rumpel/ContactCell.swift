@@ -12,6 +12,7 @@ class ContactCell: UITableViewCell {
 
     @IBOutlet var contactNameLabel: UILabel!
     @IBOutlet var profileImageView: UIImageView!
+    @IBOutlet var newQuestionImage: UIImageView!
     var contact : Contact?
     
     func configureCell(withContact contact: Contact)
@@ -24,6 +25,7 @@ class ContactCell: UITableViewCell {
         
         profileImageView.layer.cornerRadius = profileImageView.frame.width / 2
         profileImageView.layer.masksToBounds = true
+        newQuestionImage.isHidden = !(self.contact?.hasNewQuestion ?? false)
     }
 
 }
