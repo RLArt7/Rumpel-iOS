@@ -14,6 +14,7 @@ protocol AddNewQuestionProtocol:class
     func addQuestionToConversation(question: Question)
 }
 class NewQuestionViewController: UIViewController ,UITextFieldDelegate ,SelectQuestionFromPoolProtocol{
+    @IBOutlet var containerView: UIView!
 
     @IBOutlet var answer1CheckBox: BEMCheckBox!
     @IBOutlet var answer2CheckBox: BEMCheckBox!
@@ -71,6 +72,8 @@ class NewQuestionViewController: UIViewController ,UITextFieldDelegate ,SelectQu
     
     @IBAction func resetButton(_ sender: Any)
     {
+        addQuestion.isHidden = true
+        flip()
         clearFields()
     }
     
@@ -249,4 +252,21 @@ class NewQuestionViewController: UIViewController ,UITextFieldDelegate ,SelectQu
         return legit
     }
     
+    func flip() {
+        let transitionOptions: UIViewAnimationOptions = [.transitionCurlUp]
+        
+//        UIView.transition(with: self.containerView, duration: 1.0, options: transitionOptions, animations: {
+//            self.containerView.isHidden = true
+//        })
+        
+        
+        
+        UIView.transition(with: self.containerView, duration: 0.6, options: transitionOptions, animations: {
+            self.containerView.isHidden = true
+        }, completion: { (bool) in
+            UIView.transition(with: self.containerView, duration: 0.5, options: [.showHideTransitionViews], animations: {
+                self.containerView.isHidden = false
+            })
+        })
+    }
 }

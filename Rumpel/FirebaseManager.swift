@@ -54,6 +54,28 @@ class FirebaseManager
             self.chatQuery?.removeObserver(withHandle: observe)
         }
     }
+    
+    func fetchConverstion(withchatId chatId:String? , endPoint: String ,completion:@escaping ((_ success:Bool, _ chat:Chat?)->Void))
+    {
+        var ref: DatabaseReference!
+        if let chatId = chatId
+        {
+            ref = Database.database().reference().child("chats").child(chatId)
+            
+            ref.observe(.value, with: { (snapshot) in
+                if !snapshot.exists() {
+                    completion(false,nil)
+                    return
+                }
+                let chat = Chat(snapshot: snapshot)
+                completion(true,chat)
+            })
+        }
+        else
+        {
+            completion(false,nil)
+        }
+    }
 
     
     func fetchUserConversation(withchatId chatId:String? , endPoint: String ,completion:@escaping ((_ success:Bool, _ chat:Chat?)->Void))

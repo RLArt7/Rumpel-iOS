@@ -32,24 +32,32 @@ class ContactsManager
             }
         }
         contacts.sort{$0.lastChange! > $1.lastChange!}
+        UserManager.manager.setChatsArray()
     }
     
-    func updateContactNewMessageById(id:String , withBadge : Bool)
+    func updateContactNewMessageById(id:String ,hasNewQuestion : Bool = true , withBadge : Bool ,didChange : Bool = true)
     {
         contacts.forEach { (contact) in
             if contact.id == id
             {
                 if withBadge
                 {
-                    contact.hasNewQuestion = true
+                    contact.hasNewQuestion = hasNewQuestion
                 }
-                let date = Date()
-                contact.lastChange = date
-                UserDefaults.standard.set(date, forKey: "lastChange_\(id)")
+                if didChange
+                {
+                    let date = Date()
+                    contact.lastChange = date
+                    UserDefaults.standard.set(date, forKey: "lastChange_\(id)")
+                }
             }
         }
         contacts.sort{$0.lastChange! > $1.lastChange!}
 //        contacts.sort{$0.hasNewQuestion && !$1.hasNewQuestion}
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "newPushMessageArrive"), object: nil)
+
+        if didChange
+        {
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "newPushMessageArrive"), object: nil)
+        }
     }
 }

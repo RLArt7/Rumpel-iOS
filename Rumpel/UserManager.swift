@@ -19,7 +19,7 @@ enum UserFields : String
 class UserManager
 {
     static let manager = UserManager()
-    
+    var groupExist = false
     var name : String?
     var userToken : String?
     {
@@ -32,12 +32,47 @@ class UserManager
     var userId: String?
     var userPhotoUrl : String = ""
     var chatsIdMap = [String:String]()
-    
+    var chats = [Chat]()
     func setChatIdMap(snapshot : DataSnapshot)
     {
         if let value = snapshot.value as? String {
             chatsIdMap[snapshot.key] = value
         }
+    }
+    func setChatsArray()
+    {
+        var dispatchGroup = DispatchGroup()
+        chatsIdMap.forEach { (key,value) in
+            dispatchGroup.enter()
+            groupExist = true
+            FirebaseManager.manager.fetchConverstion(withchatId: value, endPoint: key, completion: { (bool,chat) in
+                if bool
+                {
+                    self.chats.append(chat!)
+                    if chat!.isThereOpenQuestion && (chat!.fetchOpenQuestoin()?.senderId ?? "") != self.userId
+                    {
+                        ContactsManager.manager.updateContactNewMessageById(id: key, withBadge: true ,didChange: false)
+                        if !self.groupExist
+                        {
+                            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "newPushMessageArrive"), object: nil)
+                        }
+                    }
+                    else
+                    {
+                        ContactsManager.manager.updateContactNewMessageById(id: key,hasNewQuestion: false ,withBadge: true ,didChange: false)
+                    }
+                }
+                if self.groupExist
+                {
+                    dispatchGroup.leave()
+                }
+            })
+        }
+        dispatchGroup.notify(queue: DispatchQueue.main, execute: {
+            self.groupExist = false
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "newPushMessageArrive"), object: nil)
+        })
+        
     }
     
     func setUser(withName name: String,userToken:String,facebookId:String,userId:String)

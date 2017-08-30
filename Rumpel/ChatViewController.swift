@@ -28,7 +28,7 @@ class ChatViewController: JSQMessagesViewController,AddNewQuestionProtocol {
     var answerBackgorund3 = UIView()
     var answerBackgorund4 = UIView()
     
-    var addAnswerButton: UIButton = UIButton(frame: CGRect(x: UIScreen.main.bounds.width - 75, y: UIScreen.main.bounds.height - 75, width:  50, height: 50))
+    var addAnswerButton: UIButton = UIButton(frame: CGRect(x: 25, y: UIScreen.main.bounds.height - 75, width:  50, height: 50))
 
     let theStoryboard = UIStoryboard(name: "Main", bundle: nil)
     
@@ -105,8 +105,6 @@ class ChatViewController: JSQMessagesViewController,AddNewQuestionProtocol {
         super.viewWillDisappear(animated)
         
         FirebaseManager.manager.removeObsreves()
-        UserDefaults.standard.removeObject(forKey: self.contact.id)
-        self.contact.hasNewQuestion = false
     }
     
 //  MARK: Public Functions
@@ -163,6 +161,9 @@ class ChatViewController: JSQMessagesViewController,AddNewQuestionProtocol {
         self.collectionView?.reloadData()
         self.collectionView?.layoutIfNeeded()
         ContactsManager.manager.updateContactNewMessageById(id: self.contact.id, withBadge: false)
+        UserDefaults.standard.removeObject(forKey: self.contact.id)
+        self.contact.hasNewQuestion = false
+
     }
     
     func addQuestion(sender: UIButton!)

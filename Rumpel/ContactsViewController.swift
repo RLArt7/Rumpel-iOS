@@ -70,8 +70,6 @@ extension ContactsViewController : UITableViewDelegate,UITableViewDataSource
         if let contact = viewModel.getContactForIndex(index: indexPath.row)
         {
             let chatId = UserManager.manager.chatsIdMap[contact.id]
-            UserDefaults.standard.removeObject(forKey: contact.id)
-            contact.hasNewQuestion = false
             FirebaseManager.manager.fetchUserConversation(withchatId: chatId, endPoint: contact.id) { (Bool,chat) in
                 chatVC.chat = chat
                 chatVC.contact = self.viewModel.getContactForIndex(index: indexPath.row)
