@@ -230,6 +230,15 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
                                 didReceive response: UNNotificationResponse,
                                 withCompletionHandler completionHandler: @escaping () -> Void) {
         let userInfo = response.notification.request.content.userInfo
+        
+        if let senderId = userInfo["senderId"] as? String
+        {
+            if senderId != ""
+            {
+                UserDefaults.standard.set(true, forKey: senderId)
+                ContactsManager.manager.updateContactNewMessageById(id: senderId, withBadge: true)
+            }
+        }
         // Print message ID.
         if userInfo[gcmMessageIDKey] != nil {
             // print("Message ID: \(messageID)")
