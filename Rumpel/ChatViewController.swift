@@ -16,17 +16,23 @@ public enum Setting: String{
     case removeAvatar = "Remove Avatars"
 }
 
+let buttonsHeight : CGFloat = 40
+let buttonsWidth : CGFloat = (UIScreen.main.bounds.width / 2) - 2
+
 class ChatViewController: JSQMessagesViewController,AddNewQuestionProtocol {
 
+    
     var answersView: UIView = UIView(frame: CGRect(x: 0, y: UIScreen.main.bounds.height - 134, width: UIScreen.main.bounds.width, height: 134))
-    var answerOneButton: UIButton = UIButton(frame: CGRect(x: 0, y: 0, width:  UIScreen.main.bounds.width / 2, height: 67))
-    var answerTwoButton: UIButton = UIButton(frame: CGRect(x: UIScreen.main.bounds.width / 2, y: 0, width:  UIScreen.main.bounds.width / 2, height: 67))
-    var answerThreeButton: UIButton = UIButton(frame: CGRect(x: 0, y: 67, width:  UIScreen.main.bounds.width / 2, height: 67))
-    var answerFourButton: UIButton = UIButton(frame: CGRect(x: UIScreen.main.bounds.width / 2, y: 67, width:  UIScreen.main.bounds.width / 2, height: 67))
+    var questionLabel: UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 54))
+    var answerOneButton: UIButton = UIButton(frame: CGRect(x: 1, y: 134 - (buttonsHeight * 2), width:  buttonsWidth, height: buttonsHeight))
+    var answerTwoButton: UIButton = UIButton(frame: CGRect(x: UIScreen.main.bounds.width / 2 , y: 134 - (buttonsHeight * 2), width:  buttonsWidth, height: buttonsHeight))
+    var answerThreeButton: UIButton = UIButton(frame: CGRect(x: 1, y: 134 - buttonsHeight, width:  buttonsWidth, height: buttonsHeight))
+    var answerFourButton: UIButton = UIButton(frame: CGRect(x: UIScreen.main.bounds.width / 2, y: 134 - buttonsHeight, width:  buttonsWidth, height: buttonsHeight))
     var answerBackgorund1 = UIView()
     var answerBackgorund2 = UIView()
     var answerBackgorund3 = UIView()
     var answerBackgorund4 = UIView()
+    var questionBackgorund = UIView()
     
     var addAnswerButton: UIButton = UIButton(frame: CGRect(x: 25, y: UIScreen.main.bounds.height - 75, width:  50, height: 50))
 
@@ -52,7 +58,7 @@ class ChatViewController: JSQMessagesViewController,AddNewQuestionProtocol {
     var outgoingBubble: JSQMessagesBubbleImage!
     var userImage = UIImageView()
     var contactImage = UIImageView()
-
+    
 //  MARK: Override Functions
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -194,11 +200,12 @@ class ChatViewController: JSQMessagesViewController,AddNewQuestionProtocol {
                 })
                 ContactsManager.manager.updateContactNewMessageById(id: self.contact.id, withBadge: false)
             }
+            self.scrollToBottom(animated: true)
         }
-        
     }
     
 //MARK: JSQMessages CollectionView DataSource
+    
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return messages.count
     }
